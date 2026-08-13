@@ -1,0 +1,482 @@
+{
+  "site": {
+    "brand": "B-M",
+    "title": "Industrial Design + Engineering",
+    "subtitle": "Selected work",
+    "contactEmail": "branson.murdock@gmail.com",
+    "aboutText": "I design and engineer practical systems, tooling, and products. This portfolio is organized by discipline and each section contains documented examples of my work."
+  },
+  "about": {
+    "heading": "About",
+    "name": "Branson Murdock",
+    "imageIntervalMs": 5000,
+    "paragraphs": [
+      "I grew up making short films and VFX shorts, and that early experience with visual storytelling shaped the way I think about design. From there, I moved into graphic design, where I learned how to communicate ideas clearly and thoughtfully. Over time, I became drawn to work that could have a more tangible impact on the real world, so I redirected that creative energy into engineering. I enjoy working hands-on and finding solutions in manufacturing and product design that improve both how products are made and how people use them.",
+      "I see myself as a multidisciplinary engineer and a bit of a jack of all trades, someone who likes to bring together different perspectives, skills, and life experiences to solve problems in creative ways. I’m always looking for ways to make processes faster and more efficient, whether that means improving the way I work or helping the people around me work more effectively. I’m especially interested in work that sits at the intersection of design, fabrication, and practical implementation, whether that means programming, hardware design, plastics, metalworking, woodworking, or building things just to learn and experiment. In my free time, I’m often outdoors or deep in personal projects that explore new mediums, tools, and ideas."
+    ],
+    "location": "Open to work in the U.S.",
+    "phone": "+1 (208) 840-9916",
+    "skills": [
+      "Design for Manufacturing (DFM)",
+      "Mechanical Design (CAD)",
+      "Tooling / Fixture Design",
+      "Digital Transformation / IIOT / Industry 4.0",
+      "Automation",
+      "Continuous Improvement",
+      "Data Engineering / Analysis",
+      "Process Optimization",
+      "Prototyping / Rapid Iteration",
+      "Graphic Design / Visual Communication",
+      "Video Production / Motion Graphics"
+    ],
+    "software": [
+      { "name": "SolidWorks", "src": "/About/logos/solidworks.svg" },
+      { "name": "PTC Creo Parametric", "src": "/About/logos/creo-parametric.svg" },
+      { "name": "PTC Thingworx", "src": "/About/logos/thingworx.svg" },
+      { "name": "PTC Windchill", "src": "/About/logos/windchill.svg" },
+      { "name": "TwinCat / Beckhoff", "src": "/About/logos/twincat.svg" },
+      { "name": "Microsoft Products", "src": "/About/logos/microsoft.svg" },
+      { "name": "Google Products", "src": "/About/logos/google.svg" },
+      { "name": "Postgres SQL", "src": "/About/logos/postgresql.svg" },
+      { "name": "Python", "src": "/About/logos/python.svg" },
+      { "name": "HTML5", "src": "/About/logos/html5.svg" },
+      { "name": "CSS3", "src": "/About/logos/css.svg" },
+      { "name": "JavaScript", "src": "/About/logos/javascript.svg" },
+      { "name": "Blender", "src": "/About/logos/blender.svg" },
+      { "name": "Photoshop", "src": "/About/logos/photoshop.svg" },
+      { "name": "Illustrator", "src": "/About/logos/illustrator.svg" },
+      { "name": "After Effects", "src": "/About/logos/after-effects.svg" },
+      { "name": "Premiere Pro", "src": "/About/logos/premiere-pro.svg" }
+    ],
+    "images": [
+      
+      { "src": "/About/IMG_0211.JPG", "alt": "Camera" },
+      { "src": "/About/IMG_1487.jpg", "alt": "Shop" }
+    ]
+  },
+  "ordering": {
+    "queryParam": "order",
+    "defaultPreset": "default",
+    "presets": [
+      {
+        "key": "default",
+        "queryValue": "default",
+        "label": "Default",
+        "sectionIds": [
+          "product-design",
+          "tooling-and-fixtures",
+          "automation",
+          "building-infrastructure",
+          "personal-projects"
+        ]
+      },
+      {
+        "key": "engineering-first",
+        "queryValue": "eng",
+        "label": "Engineering First",
+        "sectionIds": [
+          "automation",
+          "tooling-and-fixtures",
+          "building-infrastructure",
+          "product-design",
+          "personal-projects"
+        ]
+      },
+      {
+        "key": "product-first",
+        "queryValue": "product",
+        "label": "Product First",
+        "sectionIds": [
+          "product-design",
+          "personal-projects",
+          "automation",
+          "tooling-and-fixtures",
+          "building-infrastructure"
+        ]
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "automation",
+      "slug": "automation",
+      "title": "Automation / Digital Transformation",
+      "summary": "Industry 4.0 solutions, including PLC programming, IIOT, Custom Scada System design, and data visualization for manufacturing and production environments.",
+      "detailGroups": [
+        {
+          "id": "automation-overview-1",
+          "title": "Control Enclosure Design",
+          "description": "This enclosure was designed for a small scale project with limited IO needs. But it was designed with the intent of being expanded onto at a later date.",
+          "media": [
+            { "type": "image", "src": "/Automation/cabinet.png", "alt": "Control Cabinet Design" }
+          ]
+        },
+        {
+          "id": "automation-overview-2",
+          "title": "Live Automated Line Signals",
+          "description": [
+            "As part of an Andon signal for help system. This system was designed to help operators and management identify issues on the line and respond quickly to reduce downtime.",
+            "The system the Beckhoff IPC is connected to is calculating cycle time so this system reads from that data and triggers sequences like this one where the operators are notified that it is time to move the product down the line"
+          ],
+          "media": [
+            { "type": "video", "src": "/Automation/Line-move.mp4", "alt": "Line Move Sequence" }
+          ]
+        },
+        {
+          "id": "automation-overview-3",
+          "title": "Live Automated Line Signals",
+          "description": [
+            "As part of an Andon signal for help system. This system was designed to help operators and management identify issues on the line and respond quickly to reduce downtime.",
+            "This light could indicate a problem occuring on the line so operators are signaled visually and can respond."
+          ],
+          "media": [
+            { "type": "video", "src": "/Automation/red-light.mp4", "alt": "Red Light Sequence" }
+          ]
+        },
+        {
+          "id": "automation-overview-4",
+          "title": "Scada System Design",
+          "description": [
+            "Design and implementation of a custom SCADA system for monitoring and controlling production line processes.",
+            "The system provides real-time data visualization, alerts, and control capabilities to improve operational efficiency and reduce downtime."
+          ],
+          "media": [
+            { "type": "image", "src": "/Automation/home-screen.png", "alt": "SCADA System Home Screen" }
+          ]
+        },
+        {
+          "id": "automation-overview-5",
+          "title": "Scada System Design",
+          "description": [
+            "Design and implementation of a custom SCADA system for monitoring and controlling production line processes.",
+            "The system provides real-time data visualization, alerts, and control capabilities to improve operational efficiency and reduce downtime."
+          ],
+          "media": [
+            { "type": "video", "src": "/Automation/prod-schedule.mp4", "alt": "SCADA System Production Schedule" }
+          ]
+        },
+        {
+          "id": "automation-overview-6",
+          "title": "Scada System Design",
+          "description": [
+            "Design and implementation of a custom SCADA system for monitoring and controlling production line processes.",
+            "The system provides real-time data visualization, alerts, and control capabilities to improve operational efficiency and reduce downtime."
+          ],
+          "media": [
+            { "type": "image", "src": "/Automation/dashboard.png", "alt": "SCADA System Production Schedule" }
+          ]
+        },
+        {
+          "id": "automation-overview-7",
+          "title": "Scada System Design",
+          "description": [
+            "Design and implementation of a custom SCADA system for monitoring and controlling production line processes.",
+            "The system provides real-time data visualization, alerts, and control capabilities to improve operational efficiency and reduce downtime."
+          ],
+          "media": [
+            { "type": "image", "src": "/Automation/andon-request.png", "alt": "SCADA System Andon Request" },
+            { "type": "image", "src": "/Automation/red-tag.png", "alt": "SCADA System Red Tag" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "building-infrastructure",
+      "slug": "building-infrastructure",
+      "title": "Building Infrastructure",
+      "summary": "Physical build-outs, site integration, and construction coordination from concept through installation.",
+      "detailGroups": [
+        {
+          "id": "infra-site-1",
+          "title": "Pallet Conveyor Build",
+          "description": "Modular conveyor system built to move pallets through a production line. Designed in house for cost savings.",
+          "media": [
+            { "type": "image", "src": "/Building Infrastructure/pallet.png", "alt": "Pallet Conveyor Build" }
+          ]
+        },
+        {
+          "id": "infra-site-2",
+          "title": "Material Handling Carts",
+          "description": "Custom carts designed to move materials efficiently and safely within a production environment. These carts were fabricated in-house to meet specific size and weight requirements.",
+          "media": [
+            { "type": "image", "src": "/Building Infrastructure/cart.png", "alt": "Material Handling Carts" }
+          ]
+        },
+        {
+          "id": "infra-site-3",
+          "title": "Process Flow Reorder",
+          "description": [
+            "This was an experiment to easily visualize the reorder of components in a station in a rapid prototype way.",
+            "I utilized a 3D scan of the current state of the station and then brought that model into Blender to create a new layout. This allowed for quick iteration and visualization of the new process flow before committing to physical changes.",
+            "This approach was faster then doing a CAD model recreation of the station. And allowed for a more accurate representation of the current state of the station."
+          ],  
+          "media": [
+            { "type": "video", "src": "/Building Infrastructure/floor-plan.mp4", "alt": "Process Flow Reorder" }
+          ]
+        },
+        {
+          "id": "infra-site-4",
+          "title": "Weld Area Layout / Work Cell Design",
+          "description": [
+            "The complete layout of the weld area was designed as modular work cells to allow for flexibility in the production process. The layout was designed to optimize workflow, reduce material handling, and improve safety."
+          ],  
+          "media": [
+            { "type": "image", "src": "/Building Infrastructure/weld-booth/booth-design.png", "alt": "Work Cell Design" },
+            { "type": "image", "src": "/Building Infrastructure/weld-booth/booth-image.png", "alt": "Work Cell Image" },
+            { "type": "image", "src": "/Building Infrastructure/weld-booth/weld-line.png", "alt": "Weld Line" }
+          ]
+        },
+        {
+          "id": "infra-site-5",
+          "title": "Crane and Hoist Integration",
+          "description": [
+            "Cranes and hoists were integrated into the facility to facilitate the movement of heavy materials and components. The placement and capacity of the cranes were carefully planned to ensure safe and efficient operation."
+          ],  
+          "media": [
+            { "type": "image", "src": "/Building Infrastructure/crane/crane-weld.png", "alt": "Weld Crane" },
+            { "type": "image", "src": "/Building Infrastructure/crane/crane.png", "alt": "Crane" },
+            { "type": "image", "src": "/Building Infrastructure/crane/crane-detail.png", "alt": "Crane Detail" },
+            { "type": "image", "src": "/Building Infrastructure/crane/jib.png", "alt": "Jib Crane" },
+            { "type": "image", "src": "/Building Infrastructure/crane/base.png", "alt": "Jib Base Extension" }
+          ]
+        },
+        {
+          "id": "infra-site-6",
+          "title": "Powder Coat Infrastructure",
+          "description": [
+            "The powder coat area was designed to accommodate large parts and ensure efficient coating processes. Proper ventilation, curing, and material handling were considered in the layout."
+          ],  
+          "media": [
+            { "type": "image", "src": "/Building Infrastructure/powder-coat/vent-fan.png", "alt": "Building Ventilation" },
+            { "type": "image", "src": "/Building Infrastructure/powder-coat/trough.png", "alt": "Wash Trough Drip Catch Pan" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "personal-projects",
+      "slug": "personal-projects",
+      "title": "Personal Projects",
+      "summary": "Side projects built out of curiosity or necessity — spanning fabrication, electronics, and everyday problem solving.",
+      "detailGroups": [
+        {
+          "id": "personal-overview-1",
+          "title": "Wood Work Bench",
+          "description": "This is a personal project where I built a wood work bench for my home workshop. The bench was designed to be sturdy and functional, with ample workspace and storage for tools and materials. The project allowed me to practice woodworking skills and create a custom solution for my personal needs.",
+          "media": [
+            { "type": "image", "src": "/Personal Projects/workbench/bench.jpg", "alt": "Finished Bench" },
+            { "type": "image", "src": "/Personal Projects/workbench/process.jpg", "alt": "Process Planing" }
+          ]
+        },
+        {
+          "id": "personal-overview-2",
+          "title": "Van Swivel Seat",
+          "description": [
+            "This is a personal project where I built a swivel seat mechanism for my van. This was more of a reverse engineering challenge to see how cheap I could make something that would have otherwise cost me about $400.",
+            "This design uses a trailer wheel bearing assembly and spring locking mechanism. I only had two product images to work from (of the original product) but the end result is amazing and functions perfectly."
+          ],
+          "media": [
+            { "type": "image", "src": "/Personal Projects/swivel-seat/swivel.jpg", "alt": "Finished Swivel Seat" },
+            { "type": "image", "src": "/Personal Projects/swivel-seat/rear-facing.jpg", "alt": "Rear Facing View" }
+          ]
+        },
+        {
+          "id": "personal-overview-3",
+          "title": "Van Swivel Seat",
+          "description": [
+            "This is my favorite position to put the seat in. Which is more or less a happy accident as I didn't even think about this when I was looking into these swivel seats.",
+            "I just get to put my feet up and relax as I look at the stars above. The next best thing without having to cut a hole in the roof of the van to install a sun roof."
+          ],
+          "media": [
+            { "type": "image", "src": "/Personal Projects/swivel-seat/favorite-position.jpg", "alt": "Favorite Position" }
+          ]
+        },
+        {
+          "id": "personal-overview-4",
+          "title": "Ski Board",
+          "description": [
+            "This was part of a plastics and composites class where I was able to practice wet layup.",
+            "The ski was built using fiberglass, epoxy resin, and carbon fiber (for the top decal), and a wooden core, allowing me to experiment with different layering techniques and achieve a strong, lightweight structure.",
+            "Having never seen skis built before or never seeing what the inside of a ski looks like, I had to do a lot of research and reverse engineering to figure out how to build this ski. I was able to find some information on the internet about how skis are built and what materials are used, but I had to experiment with different techniques and materials to achieve the desired result."
+          ],
+          "media": [
+            { "type": "image", "src": "/Personal Projects/ski/1.JPG", "alt": "Finished Ski" },
+            { "type": "image", "src": "/Personal Projects/ski/2.JPG", "alt": "Finished Ski" },
+            { "type": "image", "src": "/Personal Projects/ski/3.JPG", "alt": "Finished Ski" },
+            { "type": "image", "src": "/Personal Projects/ski/4.JPG", "alt": "Finished Ski" },
+            { "type": "image", "src": "/Personal Projects/ski/5.JPG", "alt": "Finished Ski" },
+            { "type": "image", "src": "/Personal Projects/ski/6.JPG", "alt": "Finished Ski" },
+            { "type": "image", "src": "/Personal Projects/ski/7.JPG", "alt": "Finished Ski" },
+            { "type": "image", "src": "/Personal Projects/ski/8.jpg", "alt": "Finished Ski" },
+            { "type": "image", "src": "/Personal Projects/ski/9.jpg", "alt": "Finished Ski" }
+          ]
+        },
+        {
+          "id": "personal-overview-5",
+          "title": "Free Ski (Free Skate Ski)",
+          "description": [
+            "While making my ski boards I also wanted to experiment with trying to make one of my favorite hobbies, Free Skating, work in the snow.",
+            "Others have done this successfully with ice skates and Free Skates. But I wanted to see if I could apply this same skating technique to snow. So I made a ski board that is similar to a Free Skate but with a ski base and edges. These would be mounted to an aluminum riser that would be attached to snowboard bindings.",
+            "I took this out to my local ski hill and just as I supposed. They sunk straight into the snow and I was not able to skate on them. So I will have to try again with a different design that has a larger surface area and more floatation."
+          ],
+          "media": [
+            { "type": "image", "src": "/Personal Projects/ski/free-ski-design.png", "alt": "Free Ski Design" },
+            { "type": "image", "src": "/Personal Projects/ski/free-ski-finished-1.png", "alt": "Free Ski" },
+            { "type": "image", "src": "/Personal Projects/ski/free-ski-finished-2.JPG", "alt": "Free Ski" }
+          ]
+        },
+        {
+          "id": "personal-overview-6",
+          "title": "Motorcycle Trailer",
+          "description": [
+            "This was a project I took on to practice my welding skills and to hopefully in the end have a trailer that I could use to haul my motorcycle around.",
+            "I was lucky enough that my work was discontinuing a bunch of trailer frames. So I would need to make some modifications to the frame to make it work for my motorcycle.",
+            "A primary part of this design was the wheel chock that would hold the front wheel of the motorcycle in place. I designed this to be adjustable to accommodate different wheel sizes and to ensure a secure fit. I also wanted this to be a quick release design so that I could easily load and unload my motorcycle without having to finick around with trying to keep the motorcycle upright while adding straps and tie downs on the handlebars.",
+            "The end result is a trailer that is self contained with ramps and everything so I can just load my motorcycle and go. I can also use this trailer to haul other things around as well which is actually what I have been using it for lately.",
+            "And as with most of my personal projects. This was done while I was in school and trying to save money the best I could. So I would have used steel railing and expanded sheet metal for the flooring if I could. But wood was a lot cheaper at the time. So there may be future modifications to this trailer to make it more durable and long lasting. But for now it works great and I am happy with the end result.",
+            "And yes that is a Honda XL500R for all you enthusiasts out there. It was my dad's bike back in the day so some might say I have a family heirloom in my possession."
+          ],
+          "media": [
+            { "type": "image", "src": "/Personal Projects/moto-trailer/1.JPG", "alt": "Finished Trailer" },
+            { "type": "image", "src": "/Personal Projects/moto-trailer/2.JPG", "alt": "Finished Trailer" },
+            { "type": "image", "src": "/Personal Projects/moto-trailer/3.JPG", "alt": "Finished Trailer" },
+            { "type": "image", "src": "/Personal Projects/moto-trailer/4.JPG", "alt": "Finished Trailer" },
+            { "type": "image", "src": "/Personal Projects/moto-trailer/5.JPG", "alt": "Finished Trailer" },
+            { "type": "image", "src": "/Personal Projects/moto-trailer/6.JPG", "alt": "Finished Trailer" }
+          ]
+        },
+        {
+          "id": "personal-overview-7",
+          "title": "Arbor Swing / Day Bed",
+          "description": [
+            "While spending the summer in my hometown I wanted to build something for my wife. My grandparents had some old barn wood laying around. My wife loves porch sitting/swings. So the pieces just fell together after that and I built an arbor swing and day bed for her.",
+            "I love modular design as can be seen in a lot of my work. And this is no different. The back rest is adjustable to different lengths so it can be a normal swing or be put all the way back to be a day bed. The swing is also designed to be able to be taken down and stored away if needed. And I designed it in mind that the removable cushion / foldable mattress could slide underneath backrest and be used as a seat pad or mattress for the bed.",
+            "All the wood is sealed with polyurethane to protect it from the elements and the rope is a thick braided nylon rope that can withstand the weather. And as with a lot of my projects I used what hardware I had laying around to build this. The sheet metal brackets were made from scrap laying around and the bolts and nuts were from misc farm equipment that my grandpa had laying around.",
+            "And I would be amiss if I didn't mention the solar powered \"twinkly lights\" that my wife is so fond of that we hung so it would be lit up during the night."
+          ],
+          "media": [
+            { "type": "image", "src": "/Personal Projects/swing/1.jpg", "alt": "Arbor Swing" },
+            { "type": "image", "src": "/Personal Projects/swing/2.jpg", "alt": "Arbor Swing Detail" },
+            { "type": "image", "src": "/Personal Projects/swing/3.jpg", "alt": "Arbor Swing Detail" }
+          ]
+        }
+
+      ]
+    },
+    {
+      "id": "product-design",
+      "slug": "product-design",
+      "title": "Product Design",
+      "summary": "End-to-end product development from initial brief through industrial design, prototyping, and production-ready execution.",
+      "detailGroups": [
+        {
+          "id": "product-concepts",
+          "title": "Van Bed Concept",
+          "description": "This bed concept was designed to fit in a van and provide a comfortable sleeping solution for travel. The design process included sketching, 3D modeling, and prototyping to ensure functionality and comfort.",
+          "media": [
+            { "type": "video", "src": "/Product Design/van-bed/bed.mp4", "alt": "Product design sample" }
+          ]
+        },
+        {
+          "id": "product-prototypes",
+          "title": "Van Bed Build",
+          "description": "Here This is after welding and assembling the frame and I am testing the mechanism to make sure it works properly. The bed was installed in an Astrovan. The prototype was tested for comfort, stability, and ease of use. Feedback from testing was used to refine the design for production.",
+          "media": [
+            { "type": "video", "src": "/Product Design/van-bed/bed-test.mp4", "alt": "Mechanism Test" }
+          ]
+        },
+        {
+          "id": "product-prototypes",
+          "title": "Van Bed Prototype",
+          "description": "The bed was installed in an Astrovan. The prototype was tested for comfort, stability, and ease of use. Feedback from testing was used to refine the design for production.",
+          "media": [
+            { "type": "image", "src": "/Product Design/van-bed/1.jpg", "alt": "Van Bed back" },
+            { "type": "image", "src": "/Product Design/van-bed/2.jpg", "alt": "Van Bed back open" },
+            { "type": "image", "src": "/Product Design/van-bed/3.jpg", "alt": "Van Bed front" },
+            { "type": "image", "src": "/Product Design/van-bed/4.jpg", "alt": "Van Bed front open" }
+          ]
+        },
+        {
+          "id": "product-prototypes-2",
+          "title": "Moto Tail Bag",
+          "description": "The Moto Tail Bag was designed for motorcycle touring. The prototype was tested for durability, ease of use, and storage capacity. Feedback from testing was used to refine the design for production.",
+          "media": [
+            { "type": "image", "src": "/Product Design/moto-tail-bag/1.jpg", "alt": "Moto Tail Bag on bike" },
+            { "type": "image", "src": "/Product Design/moto-tail-bag/2.jpg", "alt": "Moto Tail Bag strap" }
+          ]
+        },
+        {
+          "id": "product-prototypes-3",
+          "title": "Capstone Lifting Mechanism",
+          "description": [
+            "As part of a team, I helped improve an off-grid construction site energy system by increasing the solar panel array angle and redesigning the lifting mechanism.",
+            "The goal was to maximize available sun exposure while increasing reliability and reducing stress on the lift during operation."
+          ],
+          "media": [
+            { "type": "image", "src": "/Product Design/capstone/1.jpg", "alt": "Capstone Lifting Mechanism" },
+            { "type": "image", "src": "/Product Design/capstone/2.jpg", "alt": "Capstone Lifting Mechanism detail" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tooling-and-fixtures",
+      "slug": "tooling-and-fixtures",
+      "title": "Tooling And Fixtures",
+      "summary": "Custom jigs, fixtures, and tooling designed to increase precision, repeatability, and speed on the shop floor.",
+      "detailGroups": [
+        {
+          "id": "tooling-build-1",
+          "title": "Weld Fixture",
+          "description": "This weld fixture was designed to hold parts in place during welding, ensuring proper alignment and reducing the risk of warping or misalignment. The fixture was fabricated from sheet metal and uses push-pull clamps to hold the parts in place.",
+          "media": [
+            { "type": "image", "src": "/Tooling and Fixtures/weld-fixture/weld-fixture.jpg", "alt": "Weld Fixture 1" },
+            { "type": "image", "src": "/Tooling and Fixtures/weld-fixture/weld-fixture-design.png", "alt": "Weld Fixture 2" },
+            { "type": "image", "src": "/Tooling and Fixtures/weld-fixture/weld-clamped.jpg", "alt": "Weld Fixture 3" }
+          ]
+        },
+        {
+          "id": "tooling-build-1-adjustable",
+          "title": "Weld Fixture Adjustable",
+          "description": ["We found that better practice at times was to make the fixtures more adjustable and have parts be more modular. This allows for single parts to be swapped out or moved on the fixture if needs be either for normal wear and tear or if a part is revised updating the fixture is a simpler process of just changing up a component or two.",
+          "This design in particular uses 8020 aluminum extrusion to allow for the fixture to be adjusted and reconfigured as needed. This also is advantageous because spatter is less likely to stick to the aluminum extrusion and cause issues with the fixture."
+        ],
+          "media": [
+            { "type": "image", "src": "/Tooling and Fixtures/weld-fixture/clamp-jig1.png", "alt": "Weld Fixture 1" },
+            { "type": "image", "src": "/Tooling and Fixtures/weld-fixture/clamp-jig2.png", "alt": "Weld Fixture 2" }
+          ]
+        },
+        {
+          "id": "tooling-build-2",
+          "title": "Work Holding Fixtures",
+          "description": "These work holding fixtures were designed to hold parts in place during various machining operations, ensuring proper alignment and reducing the risk of errors. The fixtures were fabricated from sheet metal and use push-pull clamps to hold the parts in place.",
+          "media": [
+            { "type": "image", "src": "/Tooling and Fixtures/work-holding/frame.png", "alt": "Work Holding Fixture 1" },
+            { "type": "image", "src": "/Tooling and Fixtures/work-holding/box.png", "alt": "Work Holding Fixture 2" },
+            { "type": "image", "src": "/Tooling and Fixtures/work-holding/lid.png", "alt": "Work Holding Fixture 3" }
+          ]
+        },
+        {
+          "id": "tooling-build-3",
+          "title": "Drill Jig",
+          "description": "This drill jig was designed to hold parts in place during drilling, ensuring proper alignment and reducing the risk of errors. The jig was fabricated from sheet metal and uses push-pull clamps to hold the parts in place.",
+          "media": [
+            { "type": "image", "src": "/Tooling and Fixtures/drill-jig/drill-design.png", "alt": "Drill Jig 1" },
+            { "type": "image", "src": "/Tooling and Fixtures/drill-jig/drill-mounted.jpg", "alt": "Drill Jig 2" },
+            { "type": "video", "src": "/Tooling and Fixtures/drill-jig/drill.mp4", "alt": "Drill Jig 3" }
+          ]
+        },
+        {
+          "id": "tooling-build-4",
+          "title": "Material Movement",
+          "description": "These material movement fixtures were designed to facilitate the safe and efficient movement of parts within the workshop. The fixtures were fabricated from sheet metal and use push-pull clamps to secure the parts during transport.",
+          "media": [
+            { "type": "image", "src": "/Tooling and Fixtures/material-movement/mast.png", "alt": "Material Movement 1" },
+            { "type": "image", "src": "/Tooling and Fixtures/material-movement/hoist.png", "alt": "Material Movement 2" },
+            { "type": "image", "src": "/Tooling and Fixtures/material-movement/hoist-1.png", "alt": "Material Movement 3" }
+          ]
+        }
+      ]
+    }
+  ]
+}
