@@ -1,4 +1,27 @@
-import content from "../data/portfolio.content.json";
+import rawContent from "../data/portfolio.content.json";
+
+// GitHub Pages serves the site from a sub-path, so absolute "/..." media paths
+// from the JSON need the Vite base prefix rewritten in at load time.
+const base = import.meta.env.BASE_URL ?? "/";
+
+function withBase(path) {
+  if (typeof path !== "string" || !path.startsWith("/") || base === "/") return path;
+  return `${base.replace(/\/$/, "")}${path}`;
+}
+
+function rewriteMediaSrc(value) {
+  if (Array.isArray(value)) return value.map(rewriteMediaSrc);
+  if (value && typeof value === "object") {
+    const result = {};
+    for (const [key, val] of Object.entries(value)) {
+      result[key] = key === "src" ? withBase(val) : rewriteMediaSrc(val);
+    }
+    return result;
+  }
+  return value;
+}
+
+const content = rewriteMediaSrc(rawContent);
 
 function toMapById(sections) {
   return new Map(sections.map((section) => [section.id, section]));
