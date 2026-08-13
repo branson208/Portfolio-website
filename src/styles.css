@@ -651,12 +651,39 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   flex-direction: column;
   justify-content: space-between;
   padding: 96px 56px 32px;
+  overflow: hidden;
 }
 
 .inline-copy-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin-bottom: 44px;
+  scrollbar-width: none;
+}
+
+.inline-copy-main::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fade the copy so overflowing text dissolves above the footer, hinting there is more to read. */
+.inline-copy-main.fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 64px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 64px), transparent 100%);
+}
+
+.inline-copy-main.fade-top {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 40px);
+}
+
+.inline-copy-main.fade-top.fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 64px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 64px), transparent 100%);
 }
 
 .inline-intro,
@@ -668,6 +695,25 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .inline-active-copy {
   min-height: 140px;
   position: relative;
+}
+
+/* Mobile-only toggle between photo view and text view; hidden on desktop. */
+.copy-toggle {
+  display: none;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .inline-media-side {
@@ -910,6 +956,53 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   padding: 96px 64px 52px;
 }
 
+/* Stream copy: let the description fill the space above a bottom-pinned footer
+   so long text scrolls on its own instead of overrunning the title/index. */
+.dstream-copy-sticky .dgroup-copy {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.dstream-copy-sticky .dhero-footer {
+  flex: 0 0 auto;
+}
+
+.ddesc-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: auto;
+  padding-bottom: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.ddesc-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ddesc-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* Edge fades signal that more copy exists above/below the visible window. */
+.ddesc-scroll.fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 48px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 48px), transparent 100%);
+}
+
+.ddesc-scroll.fade-top {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 48px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 48px);
+}
+
+.ddesc-scroll.fade-top.fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+}
+
+
 .dstream-media {
   padding: 18px 32px 80px;
 }
@@ -1025,6 +1118,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   .side { flex: 0 0 55vh; width: 100%; height: 55vh; }
   .side-info { flex: 0 0 45vh; height: 45vh; }
   .info-body { padding: 24px 28px; }
+  .side-info .info-summary { font-size: 1.05rem; line-height: 1.55; }
   .info-footer { padding: 14px 28px 20px; }
   .info-title { font-size: 1.6rem; }
 
@@ -1037,22 +1131,27 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 
   .inline-detail {
     display: block;
+    --detail-img: min(86vw, 56vh);
   }
 
   .inline-copy-side {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     height: auto;
     min-height: 0;
-    background: var(--bg);
-    z-index: 5;
+    z-index: 20;
+    background: linear-gradient(to bottom, var(--bg) 68%, rgba(0, 0, 0, 0));
+    pointer-events: none;
   }
 
   .inline-copy-sticky {
     position: relative;
     top: auto;
     height: auto;
-    padding: calc(var(--nav-h) + 20px) 24px 20px;
+    padding: calc(var(--nav-h) + 16px) 24px 16px;
+    gap: 14px;
   }
 
   .inline-intro {
@@ -1069,11 +1168,77 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
     pointer-events: none;
   }
 
+  /* Toggle floats as a bottom-center pill in both photo and text view. */
+  .copy-toggle {
+    display: inline-flex;
+    pointer-events: auto;
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    background: var(--bg);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.4);
+  }
+
+  .inline-copy-main {
+    display: none;
+  }
+
+  /* Text view: overlay the scrollable description over the photos. */
+  .is-copy-open .inline-copy-side {
+    position: fixed;
+    inset: 0;
+    height: 100%;
+    z-index: 30;
+    background: var(--bg);
+    pointer-events: auto;
+  }
+
+  .is-copy-open .inline-copy-sticky {
+    height: 100%;
+    justify-content: flex-start;
+    padding-bottom: 84px;
+  }
+
+  .is-copy-open .inline-copy-main {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    margin-bottom: 0;
+  }
+
+  .is-copy-open .info-footer {
+    display: none;
+  }
+
+  .is-copy-open .inline-media-side,
+  .is-copy-open .detail-dot-nav {
+    visibility: hidden;
+  }
+
   .inline-media-side {
     min-height: 0;
-    padding: 8px 20px 0;
+    height: 100vh;
+    padding: 0 20px;
     align-items: stretch;
     gap: 20px;
+  }
+
+  /* One square picture per slot; sized to --detail-img so pages never overlap. */
+  .inline-media-track .dhero-frame {
+    width: var(--detail-img) !important;
+    height: var(--detail-img) !important;
+    max-width: none !important;
+    aspect-ratio: 1 / 1;
+    border-radius: 2px !important;
+    transform: none !important;
+  }
+
+  .inline-media-track .dframe {
+    width: var(--detail-img);
+    max-width: var(--detail-img);
   }
 
   .inline-hero-stage,

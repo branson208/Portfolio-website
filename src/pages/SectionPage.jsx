@@ -36,6 +36,50 @@ function renderTextBlocks(text) {
     ));
 }
 
+// Independently scrollable description. Overflowing text scrolls first (native
+// scroll-chaining hands off to the page once its top/bottom edge is reached),
+// and the edges fade to signal there is more copy to read.
+function DescriptionScroller({ description }) {
+  const ref = useRef(null);
+  const [atTop, setAtTop] = useState(true);
+  const [atBottom, setAtBottom] = useState(true);
+  const [overflowing, setOverflowing] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const update = () => {
+      const canScroll = el.scrollHeight - el.clientHeight > 2;
+      setOverflowing(canScroll);
+      setAtTop(el.scrollTop <= 2);
+      setAtBottom(el.scrollTop + el.clientHeight >= el.scrollHeight - 2);
+    };
+
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [description]);
+
+  const className = [
+    "ddesc-scroll",
+    overflowing && !atTop ? "fade-top" : "",
+    overflowing && !atBottom ? "fade-bottom" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <div ref={ref} className={className}>
+      {renderTextBlocks(description)}
+    </div>
+  );
+}
+
 function ParallaxFrame({ item, containerRef }) {
   const ref = useRef(null);
   const [y, setY] = useState(0);
@@ -334,7 +378,9 @@ export default function SectionPage() {
                     {groups[activeGroupIndex]?.title && (
                       <p className="dgroup-label">{groups[activeGroupIndex].title}</p>
                     )}
-                    {groups[activeGroupIndex]?.description && renderTextBlocks(groups[activeGroupIndex].description)}
+                    {groups[activeGroupIndex]?.description && (
+                      <DescriptionScroller description={groups[activeGroupIndex].description} />
+                    )}
                   </motion.div>
                 </AnimatePresence>
 

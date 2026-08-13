@@ -11,8 +11,10 @@ const PARALLAX_VH = 30;
 const SPRING = { stiffness: 82, damping: 22, mass: 0.8 };
 const DETAIL_INTRO_HOLD_MS = 220;
 const DETAIL_INTRO_MORPH_MS = 720;
-const DETAIL_CLOSE_PULL_THRESHOLD_PX = 250;
+const DETAIL_CLOSE_PULL_THRESHOLD_PX = 450;
 const DETAIL_CLOSE_PULL_GAIN = 0.42;
+// Pause (ms) between wheel events that counts as the end of one scroll gesture.
+const WHEEL_GESTURE_IDLE_MS = 220;
 const UNSUPPORTED_IMAGE_EXT = new Set(["heic", "heif"]);
 const SUPPORTED_VIDEO_EXT = new Set(["mp4", "webm", "ogv", "ogg"]);
 
@@ -22,6 +24,13 @@ function clamp(value, min, max) {
 
 function lerp(start, end, t) {
   return start + (end - start) * t;
+}
+
+// Square media size; larger on mobile so one picture fills the column. Must match --detail-img in CSS.
+function mediaItemPx(w, h) {
+  return w <= 900
+    ? Math.max(1, Math.min(w * 0.86, h * 0.56))
+    : Math.max(1, Math.min(w * 0.44, h * 0.72));
 }
 
 // Hide a broken image and its frame so a missing source appears absent instead of erroring.
@@ -179,7 +188,7 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
   const mediaSpring = useSpring(rawMediaPos, SPRING);
   const initialTrackDims = (() => {
     if (typeof window === "undefined") return { step: 0, center: 0 };
-    const itemPx = Math.max(1, Math.min(window.innerWidth * 0.44, window.innerHeight * 0.72));
+    const itemPx = mediaItemPx(window.innerWidth, window.innerHeight);
     return { step: itemPx * 1.14, center: (window.innerHeight - itemPx) / 2 };
   })();
   const mediaTrackY = useMotionValue(initialTrackDims.center);
@@ -195,6 +204,17 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
   const [closeT, setCloseT] = useState(0);
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
   const closingRef = useRef(false);
+
+  // Copy column: overflowing description scrolls on its own before media advances.
+  const copyScrollRef = useRef(null);
+  const copySideRef = useRef(null);
+  const touchInCopyRef = useRef(false);
+  const lastTouchYRef = useRef(0);
+  const [copyScrollState, setCopyScrollState] = useState({ overflow: false, atTop: true, atBottom: true });
+  // Mobile: description is collapsed by default; toggles between photo view and text view.
+  const [mobileCopyOpen, setMobileCopyOpen] = useState(false);
+  const mobileCopyOpenRef = useRef(false);
+  mobileCopyOpenRef.current = mobileCopyOpen;
 
   const { setLabel } = useCursor();
   const { open: aboutOpen, openAbout } = useAbout();
@@ -269,7 +289,7 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
 
   // Center the active picture and keep even spacing so neighbours peek in above/below.
   useEffect(() => {
-    const itemPx = Math.max(1, Math.min(viewport.w * 0.44, viewport.h * 0.72));
+    const itemPx = mediaItemPx(viewport.w, viewport.h);
     trackDims.current = { step: itemPx * 1.14, center: (viewport.h - itemPx) / 2 };
     mediaTrackY.set(trackDims.current.center - mediaSpring.get() * trackDims.current.step);
   }, [viewport, mediaSpring, mediaTrackY]);
@@ -373,14 +393,49 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
       setActiveMediaIndex(clamp(Math.round(freeMediaPos.current), 0, lastIndex));
     };
 
+    // A gesture may only trigger the close pull if it *started* at the edge, so a fast
+    // scroll through the media can't roll straight into closing the section.
+    let lastWheelAt = 0;
+    let gestureStartedAtTop = false;
+    let gestureStartedAtBottom = false;
+
     const onWheel = (e) => {
-      e.preventDefault();
-      if (!introDone || closingRef.current) return;
+      if (!introDone || closingRef.current) {
+        e.preventDefault();
+        return;
+      }
       const delta = e.deltaMode === 1 ? e.deltaY * 30 : e.deltaMode === 2 ? e.deltaY * 300 : e.deltaY;
+
+      const now = e.timeStamp || performance.now();
+      if (now - lastWheelAt > WHEEL_GESTURE_IDLE_MS) {
+        gestureStartedAtTop = freeMediaPos.current <= 0.001;
+        gestureStartedAtBottom = freeMediaPos.current >= lastIndex - 0.001;
+      }
+      lastWheelAt = now;
+
+      // Let the browser natively scroll the overflowing description when the pointer is over it.
+      const scroller = copyScrollRef.current;
+      if (scroller && scroller.contains(e.target)) {
+        const canDown = scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight - 1;
+        const canUp = scroller.scrollTop > 1;
+        if ((delta > 0 && canDown) || (delta < 0 && canUp)) {
+          return; // no preventDefault → native, smooth text scroll
+        }
+      }
+
+      // Mobile text view: only the current description scrolls; pictures never advance.
+      if (mobileCopyOpenRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      e.preventDefault();
       const atTop = freeMediaPos.current <= 0.001;
       const atBottom = freeMediaPos.current >= lastIndex - 0.001;
       if ((atTop && delta < 0) || (atBottom && delta > 0)) {
-        handleEdgeClosePull(delta);
+        if ((delta < 0 && gestureStartedAtTop) || (delta > 0 && gestureStartedAtBottom)) {
+          handleEdgeClosePull(delta);
+        }
         return;
       }
       if (closePullRef.current !== 0) {
@@ -397,11 +452,38 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
     const onTouchStart = (e) => {
       touchY = e.touches[0].clientY;
       touchStartPos = freeMediaPos.current;
+      lastTouchYRef.current = touchY;
+      touchInCopyRef.current = !!(copySideRef.current && copySideRef.current.contains(e.target));
       clearTimeout(snapTimerRef.current);
     };
     const onTouchMove = (e) => {
       if (touchY === null || !introDone || closingRef.current) return;
-      const delta = touchY - e.touches[0].clientY;
+      const currentY = e.touches[0].clientY;
+
+      // Mobile text view: let the overlay scroll natively; never advance pictures.
+      if (mobileCopyOpenRef.current) {
+        lastTouchYRef.current = currentY;
+        return;
+      }
+
+      // Let the browser natively scroll the description when the touch began over it.
+      const scroller = copyScrollRef.current;
+      if (touchInCopyRef.current && scroller && scroller.contains(e.target)) {
+        const inc = lastTouchYRef.current - currentY;
+        const canDown = scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight - 1;
+        const canUp = scroller.scrollTop > 1;
+        if ((inc > 0 && canDown) || (inc < 0 && canUp)) {
+          lastTouchYRef.current = currentY;
+          return; // native touch scroll of the copy column
+        }
+        // Reached a text edge — hand off to media without a positional jump.
+        touchInCopyRef.current = false;
+        touchStartPos = freeMediaPos.current;
+        touchY = currentY;
+      }
+      lastTouchYRef.current = currentY;
+
+      const delta = touchY - currentY;
       const atTop = touchStartPos <= 0.001;
       const atBottom = touchStartPos >= lastIndex - 0.001;
       if ((atTop && delta < 0) || (atBottom && delta > 0)) {
@@ -433,6 +515,35 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
     preloadMediaAroundIndex(media, activeMediaIndex, 2);
   }, [media, activeMediaIndex]);
 
+  // Reset copy scroll for each picture and track edges so the fade only shows when there is more to read.
+  useEffect(() => {
+    const el = copyScrollRef.current;
+    if (!el) return undefined;
+    el.scrollTop = 0;
+    const update = () => {
+      const overflow = el.scrollHeight - el.clientHeight > 2;
+      const atTop = el.scrollTop <= 2;
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 2;
+      setCopyScrollState((prev) =>
+        prev.overflow === overflow && prev.atTop === atTop && prev.atBottom === atBottom
+          ? prev
+          : { overflow, atTop, atBottom }
+      );
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [activeMediaIndex, viewport, introDone, mobileCopyOpen]);
+
+  // Collapse the mobile text back to photo view when the section changes.
+  useEffect(() => {
+    setMobileCopyOpen(false);
+  }, [section.id]);
+
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") {
@@ -456,7 +567,7 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
   const heroProgress = introDone ? 1 - closeT : introProgress;
   const closing = closeT > 0;
   const summaryCollapsed = !closing && (introProgress > 0 || introDone);
-  const squareSize = Math.max(1, Math.min(viewport.w * 0.44, viewport.h * 0.72));
+  const squareSize = mediaItemPx(viewport.w, viewport.h);
   const fullWidth = Math.max(squareSize, viewport.w * 0.5);
   const fullHeight = Math.max(squareSize, viewport.h);
   const transitionT = clamp(heroProgress, 0, 1);
@@ -478,7 +589,7 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
   return (
     <div
       ref={scrollRef}
-      className={`detail-page inline-detail ${heroOnLeft ? "inline-detail--media-left" : "inline-detail--media-right"} ${introDone ? "" : "detail-page--intro"}`}
+      className={`detail-page inline-detail ${heroOnLeft ? "inline-detail--media-left" : "inline-detail--media-right"} ${introDone ? "" : "detail-page--intro"}${mobileCopyOpen ? " is-copy-open" : ""}`}
       onClick={() => runClose()}
     >
       <motion.div
@@ -517,9 +628,12 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
 
       {heroItem && (
         <>
-          <aside className="inline-copy-side">
+          <aside className="inline-copy-side" ref={copySideRef} onClick={(e) => e.stopPropagation()}>
             <div className="inline-copy-sticky">
-              <div className="inline-copy-main">
+              <div
+                ref={copyScrollRef}
+                className={`inline-copy-main${copyScrollState.overflow && !copyScrollState.atBottom ? " fade-bottom" : ""}${copyScrollState.overflow && !copyScrollState.atTop ? " fade-top" : ""}`}
+              >
                 {section.summary && (
                   <div className={`inline-intro${collapseSummary ? " inline-intro--collapsed" : ""}`}>
                     <motion.div
@@ -566,6 +680,18 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
                   {String(activeMediaIndex + 1).padStart(2, "0")} / {String(media.length).padStart(2, "0")}
                 </motion.span>
               </div>
+
+              <button
+                type="button"
+                className="copy-toggle"
+                aria-expanded={mobileCopyOpen}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setMobileCopyOpen((open) => !open);
+                }}
+              >
+                {mobileCopyOpen ? "View photos" : "Read description"}
+              </button>
             </div>
           </aside>
 

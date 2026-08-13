@@ -38,6 +38,8 @@
       { "name": "Microsoft Products", "src": "/About/logos/microsoft.svg" },
       { "name": "Google Products", "src": "/About/logos/google.svg" },
       { "name": "Postgres SQL", "src": "/About/logos/postgresql.svg" },
+      { "name": "Tableau", "src": "/About/logos/tableau.svg" },
+      { "name": "R Studio", "src": "/About/logos/rstudio.svg" },
       { "name": "Python", "src": "/About/logos/python.svg" },
       { "name": "HTML5", "src": "/About/logos/html5.svg" },
       { "name": "CSS3", "src": "/About/logos/css.svg" },
@@ -101,12 +103,12 @@
       "id": "automation",
       "slug": "automation",
       "title": "Automation / Digital Transformation",
-      "summary": "Industry 4.0 solutions, including PLC programming, IIOT, Custom Scada System design, and data visualization for manufacturing and production environments.",
+      "summary": "A collection of the systems I built to make production easier to see, understand, and react to, from PLC logic and line signals to custom SCADA screens and production data.",
       "detailGroups": [
         {
           "id": "automation-overview-1",
           "title": "Control Enclosure Design",
-          "description": "This enclosure was designed for a small scale project with limited IO needs. But it was designed with the intent of being expanded onto at a later date.",
+          "description": "I designed this control enclosure for a smaller project that did not need much IO yet. I still laid it out with future expansion in mind so the next round of sensors or controls would not turn into a complete cabinet redesign.",
           "media": [
             { "type": "image", "src": "/Automation/cabinet.png", "alt": "Control Cabinet Design" }
           ]
@@ -115,8 +117,8 @@
           "id": "automation-overview-2",
           "title": "Live Automated Line Signals",
           "description": [
-            "As part of an Andon signal for help system. This system was designed to help operators and management identify issues on the line and respond quickly to reduce downtime.",
-            "The system the Beckhoff IPC is connected to is calculating cycle time so this system reads from that data and triggers sequences like this one where the operators are notified that it is time to move the product down the line"
+            "I built this as part of an Andon signal-for-help system so an issue on the line could be seen and acted on before it quietly became a larger delay.",
+            "The Beckhoff IPC was already calculating cycle time, so I used that data to trigger the sequence. When it was time to move the product, the signal gave the operator a clear cue instead of relying on someone to keep watching the clock."
           ],
           "media": [
             { "type": "video", "src": "/Automation/Line-move.mp4", "alt": "Line Move Sequence" }
@@ -126,8 +128,8 @@
           "id": "automation-overview-3",
           "title": "Live Automated Line Signals",
           "description": [
-            "As part of an Andon signal for help system. This system was designed to help operators and management identify issues on the line and respond quickly to reduce downtime.",
-            "This light could indicate a problem occuring on the line so operators are signaled visually and can respond."
+            "This red light was another piece of the Andon system I put together to make problems on the line visible from a distance.",
+            "The goal was simple: when something needed attention, the operator should not have to wonder whether anyone had noticed. The light made the state of the line obvious and gave people a reason to respond."
           ],
           "media": [
             { "type": "video", "src": "/Automation/red-light.mp4", "alt": "Red Light Sequence" }
@@ -137,8 +139,8 @@
           "id": "automation-overview-4",
           "title": "Scada System Design",
           "description": [
-            "Design and implementation of a custom SCADA system for monitoring and controlling production line processes.",
-            "The system provides real-time data visualization, alerts, and control capabilities to improve operational efficiency and reduce downtime."
+            "I designed this custom SCADA home screen to give the line a useful starting point instead of making people hunt through disconnected screens for the information they needed.",
+            "It brings the important production signals, alerts, and controls together so the person looking at it can understand what is happening and decide what to do next."
           ],
           "media": [
             { "type": "image", "src": "/Automation/home-screen.png", "alt": "SCADA System Home Screen" }
@@ -148,8 +150,8 @@
           "id": "automation-overview-5",
           "title": "Scada System Design",
           "description": [
-            "Design and implementation of a custom SCADA system for monitoring and controlling production line processes.",
-            "The system provides real-time data visualization, alerts, and control capabilities to improve operational efficiency and reduce downtime."
+            "This production schedule view came from building a SCADA system around the way the line actually runs, rather than forcing the process into a generic dashboard.",
+            "I wanted operators and management to be able to see what was coming up, what was late, and where attention was needed without piecing that story together from several different places."
           ],
           "media": [
             { "type": "video", "src": "/Automation/prod-schedule.mp4", "alt": "SCADA System Production Schedule" }
@@ -159,8 +161,8 @@
           "id": "automation-overview-6",
           "title": "Scada System Design",
           "description": [
-            "Design and implementation of a custom SCADA system for monitoring and controlling production line processes.",
-            "The system provides real-time data visualization, alerts, and control capabilities to improve operational efficiency and reduce downtime."
+            "This dashboard was one of the more data-heavy parts of the SCADA work. I used it to turn the numbers coming off the line into something people could actually use during production.",
+            "The point was not to collect data just because we could. It was to make patterns, slowdowns, and production status easier to spot while there was still time to do something about them."
           ],
           "media": [
             { "type": "image", "src": "/Automation/dashboard.png", "alt": "SCADA System Production Schedule" }
@@ -170,8 +172,8 @@
           "id": "automation-overview-7",
           "title": "Scada System Design",
           "description": [
-            "Design and implementation of a custom SCADA system for monitoring and controlling production line processes.",
-            "The system provides real-time data visualization, alerts, and control capabilities to improve operational efficiency and reduce downtime."
+            "These request and red-tag screens were built around the small interruptions that can otherwise get lost in a busy production area.",
+            "I wanted the system to capture what was happening in a consistent way and make the request visible to the people who could help, instead of depending on hallway conversations or someone remembering to pass it along."
           ],
           "media": [
             { "type": "image", "src": "/Automation/andon-request.png", "alt": "SCADA System Andon Request" },
@@ -184,12 +186,12 @@
       "id": "building-infrastructure",
       "slug": "building-infrastructure",
       "title": "Building Infrastructure",
-      "summary": "Physical build-outs, site integration, and construction coordination from concept through installation.",
+      "summary": "The physical side of the work: rearranging stations, building material-handling equipment, and fitting new infrastructure into a working production space.",
       "detailGroups": [
         {
           "id": "infra-site-1",
           "title": "Pallet Conveyor Build",
-          "description": "Modular conveyor system built to move pallets through a production line. Designed in house for cost savings.",
+          "description": "I designed and built this pallet conveyor in-house to move product through the line without buying a system that was more complicated or expensive than we needed. Keeping it modular also made it easier to adapt the layout as the process changed.",
           "media": [
             { "type": "image", "src": "/Building Infrastructure/pallet.png", "alt": "Pallet Conveyor Build" }
           ]
@@ -197,7 +199,7 @@
         {
           "id": "infra-site-2",
           "title": "Material Handling Carts",
-          "description": "Custom carts designed to move materials efficiently and safely within a production environment. These carts were fabricated in-house to meet specific size and weight requirements.",
+          "description": "These carts came from a very practical problem: materials needed to move around the shop, but the available carts were not the right size or built for the loads we were handling. I fabricated them in-house so the dimensions, capacity, and details matched the work instead of asking the work to fit the cart.",
           "media": [
             { "type": "image", "src": "/Building Infrastructure/cart.png", "alt": "Material Handling Carts" }
           ]
@@ -206,9 +208,9 @@
           "id": "infra-site-3",
           "title": "Process Flow Reorder",
           "description": [
-            "This was an experiment to easily visualize the reorder of components in a station in a rapid prototype way.",
-            "I utilized a 3D scan of the current state of the station and then brought that model into Blender to create a new layout. This allowed for quick iteration and visualization of the new process flow before committing to physical changes.",
-            "This approach was faster then doing a CAD model recreation of the station. And allowed for a more accurate representation of the current state of the station."
+            "I wanted a quick way to try a new station layout without spending the time to rebuild the entire area in CAD first.",
+            "I 3D-scanned the station as it existed, brought that scan into Blender, and rearranged the components there. That gave me a believable starting point and let me test the process flow before moving anything in the real space.",
+            "This ended up being faster than recreating the station from scratch in CAD, and the scan kept the layout honest because it included all the awkward real-world details that are easy to leave out of a clean model."
           ],  
           "media": [
             { "type": "video", "src": "/Building Infrastructure/floor-plan.mp4", "alt": "Process Flow Reorder" }
@@ -218,7 +220,7 @@
           "id": "infra-site-4",
           "title": "Weld Area Layout / Work Cell Design",
           "description": [
-            "The complete layout of the weld area was designed as modular work cells to allow for flexibility in the production process. The layout was designed to optimize workflow, reduce material handling, and improve safety."
+            "I laid out the weld area as a set of modular work cells so the process could change without making the entire space obsolete. The goal was to keep parts moving in a sensible direction, reduce unnecessary handling, and give each welder a safer place to work."
           ],  
           "media": [
             { "type": "image", "src": "/Building Infrastructure/weld-booth/booth-design.png", "alt": "Work Cell Design" },
@@ -230,7 +232,8 @@
           "id": "infra-site-5",
           "title": "Crane and Hoist Integration",
           "description": [
-            "Cranes and hoists were integrated into the facility to facilitate the movement of heavy materials and components. The placement and capacity of the cranes were carefully planned to ensure safe and efficient operation."
+            "Moving heavy parts by improvising is a good way to make a simple production task stressful. I helped plan and integrate these cranes and hoists so the facility could move those loads in a controlled way.",
+            "The placement mattered as much as the lifting capacity. I worked through where the equipment needed to reach, how it would fit into the existing work areas, and how to make the movement useful instead of just adding another obstacle to the floor."
           ],  
           "media": [
             { "type": "image", "src": "/Building Infrastructure/crane/crane-weld.png", "alt": "Weld Crane" },
@@ -244,7 +247,8 @@
           "id": "infra-site-6",
           "title": "Powder Coat Infrastructure",
           "description": [
-            "The powder coat area was designed to accommodate large parts and ensure efficient coating processes. Proper ventilation, curing, and material handling were considered in the layout."
+            "The powder coat area had to support large parts without making every step of the process harder than it needed to be. I worked through the layout with ventilation, curing, washing, and material movement all considered together.",
+            "A lot of the value in this kind of infrastructure is in the details people do not notice when it works: keeping overspray and water under control, giving parts room to move, and making the next step easy to reach."
           ],  
           "media": [
             { "type": "image", "src": "/Building Infrastructure/powder-coat/vent-fan.png", "alt": "Building Ventilation" },
@@ -367,12 +371,12 @@
       "id": "product-design",
       "slug": "product-design",
       "title": "Product Design",
-      "summary": "End-to-end product development from initial brief through industrial design, prototyping, and production-ready execution.",
+      "summary": "Products developed by working back and forth between the idea, the model, and the physical prototype until the design made sense in the real world.",
       "detailGroups": [
         {
           "id": "product-concepts",
           "title": "Van Bed Concept",
-          "description": "This bed concept was designed to fit in a van and provide a comfortable sleeping solution for travel. The design process included sketching, 3D modeling, and prototyping to ensure functionality and comfort.",
+          "description": "I designed this bed concept around the limited space inside a van, with the goal of making a comfortable sleeping platform that could still leave the van useful during the day. I worked through the concept in sketches and 3D before building the mechanism so I could catch the awkward clearances early.",
           "media": [
             { "type": "video", "src": "/Product Design/van-bed/bed.mp4", "alt": "Product design sample" }
           ]
@@ -380,7 +384,7 @@
         {
           "id": "product-prototypes",
           "title": "Van Bed Build",
-          "description": "Here This is after welding and assembling the frame and I am testing the mechanism to make sure it works properly. The bed was installed in an Astrovan. The prototype was tested for comfort, stability, and ease of use. Feedback from testing was used to refine the design for production.",
+          "description": "This is the frame after welding and assembly, while I was testing the mechanism before putting it into the Astrovan. This was the part where the design had to stop looking good in a model and prove that it could actually move, lock, and support someone comfortably.",
           "media": [
             { "type": "video", "src": "/Product Design/van-bed/bed-test.mp4", "alt": "Mechanism Test" }
           ]
@@ -388,7 +392,7 @@
         {
           "id": "product-prototypes",
           "title": "Van Bed Prototype",
-          "description": "The bed was installed in an Astrovan. The prototype was tested for comfort, stability, and ease of use. Feedback from testing was used to refine the design for production.",
+          "description": "Once the frame was in the Astrovan, I could finally see which parts of the design worked and which parts only worked on paper. I used the prototype to check the fit, stability, and day-to-day usability of the bed and to identify what I would change in another version.",
           "media": [
             { "type": "image", "src": "/Product Design/van-bed/1.jpg", "alt": "Van Bed back" },
             { "type": "image", "src": "/Product Design/van-bed/2.jpg", "alt": "Van Bed back open" },
@@ -399,7 +403,7 @@
         {
           "id": "product-prototypes-2",
           "title": "Moto Tail Bag",
-          "description": "The Moto Tail Bag was designed for motorcycle touring. The prototype was tested for durability, ease of use, and storage capacity. Feedback from testing was used to refine the design for production.",
+          "description": "I designed this tail bag to make motorcycle trips easier without making the back of the bike feel overloaded. The prototype gave me a chance to work through how it mounted, how much it could carry, and whether I could still get to the things I needed without unpacking the whole bag.",
           "media": [
             { "type": "image", "src": "/Product Design/moto-tail-bag/1.jpg", "alt": "Moto Tail Bag on bike" },
             { "type": "image", "src": "/Product Design/moto-tail-bag/2.jpg", "alt": "Moto Tail Bag strap" }
@@ -409,8 +413,8 @@
           "id": "product-prototypes-3",
           "title": "Capstone Lifting Mechanism",
           "description": [
-            "As part of a team, I helped improve an off-grid construction site energy system by increasing the solar panel array angle and redesigning the lifting mechanism.",
-            "The goal was to maximize available sun exposure while increasing reliability and reducing stress on the lift during operation."
+            "As part of a team, I helped redesign the lifting mechanism for an off-grid construction-site energy system. We changed the solar panel angle so the array could make better use of the available sun instead of accepting the limitations of the original setup.",
+            "The redesign was not only about getting more angle. We also needed the lift to be more reliable and put less stress into the structure while it moved, so I had to balance the performance improvement with the realities of building and operating it in the field."
           ],
           "media": [
             { "type": "image", "src": "/Product Design/capstone/1.jpg", "alt": "Capstone Lifting Mechanism" },
@@ -423,12 +427,12 @@
       "id": "tooling-and-fixtures",
       "slug": "tooling-and-fixtures",
       "title": "Tooling And Fixtures",
-      "summary": "Custom jigs, fixtures, and tooling designed to increase precision, repeatability, and speed on the shop floor.",
+      "summary": "Fixtures and shop-built tools that make parts easier to locate, clamp, weld, drill, and move without asking the operator to solve the same problem from scratch every time.",
       "detailGroups": [
         {
           "id": "tooling-build-1",
           "title": "Weld Fixture",
-          "description": "This weld fixture was designed to hold parts in place during welding, ensuring proper alignment and reducing the risk of warping or misalignment. The fixture was fabricated from sheet metal and uses push-pull clamps to hold the parts in place.",
+          "description": "I built this weld fixture to take some of the guesswork out of assembling the parts. The sheet-metal fixture establishes the alignment, and the push-pull clamps keep everything where it belongs while the welds go in and the metal tries to move.",
           "media": [
             { "type": "image", "src": "/Tooling and Fixtures/weld-fixture/weld-fixture.jpg", "alt": "Weld Fixture 1" },
             { "type": "image", "src": "/Tooling and Fixtures/weld-fixture/weld-fixture-design.png", "alt": "Weld Fixture 2" },
@@ -438,8 +442,8 @@
         {
           "id": "tooling-build-1-adjustable",
           "title": "Weld Fixture Adjustable",
-          "description": ["We found that better practice at times was to make the fixtures more adjustable and have parts be more modular. This allows for single parts to be swapped out or moved on the fixture if needs be either for normal wear and tear or if a part is revised updating the fixture is a simpler process of just changing up a component or two.",
-          "This design in particular uses 8020 aluminum extrusion to allow for the fixture to be adjusted and reconfigured as needed. This also is advantageous because spatter is less likely to stick to the aluminum extrusion and cause issues with the fixture."
+          "description": ["We found that a fixture does not always need to be permanently fixed. Making the parts adjustable and modular means a worn component can be swapped out, and a revised part does not require rebuilding the whole fixture.",
+          "This version uses 8020 aluminum extrusion so I could move and reconfigure the locating points as needed. It also has a practical advantage on the weld floor: spatter is less likely to stick to the extrusion and turn the fixture into a cleanup project."
         ],
           "media": [
             { "type": "image", "src": "/Tooling and Fixtures/weld-fixture/clamp-jig1.png", "alt": "Weld Fixture 1" },
@@ -449,7 +453,7 @@
         {
           "id": "tooling-build-2",
           "title": "Work Holding Fixtures",
-          "description": "These work holding fixtures were designed to hold parts in place during various machining operations, ensuring proper alignment and reducing the risk of errors. The fixtures were fabricated from sheet metal and use push-pull clamps to hold the parts in place.",
+          "description": "These work-holding fixtures were made for the moments when a part needs to stay put while someone is machining it. I used sheet metal and push-pull clamps to make the setup repeatable, so alignment was handled by the fixture instead of being re-created by eye each time.",
           "media": [
             { "type": "image", "src": "/Tooling and Fixtures/work-holding/frame.png", "alt": "Work Holding Fixture 1" },
             { "type": "image", "src": "/Tooling and Fixtures/work-holding/box.png", "alt": "Work Holding Fixture 2" },
@@ -459,7 +463,7 @@
         {
           "id": "tooling-build-3",
           "title": "Drill Jig",
-          "description": "This drill jig was designed to hold parts in place during drilling, ensuring proper alignment and reducing the risk of errors. The jig was fabricated from sheet metal and uses push-pull clamps to hold the parts in place.",
+          "description": "I designed this drill jig to make the hole locations repeatable and keep the part from shifting during drilling. The sheet-metal body and push-pull clamps make it a quick setup, which is especially useful when the same part needs to be drilled more than once.",
           "media": [
             { "type": "image", "src": "/Tooling and Fixtures/drill-jig/drill-design.png", "alt": "Drill Jig 1" },
             { "type": "image", "src": "/Tooling and Fixtures/drill-jig/drill-mounted.jpg", "alt": "Drill Jig 2" },
@@ -469,7 +473,7 @@
         {
           "id": "tooling-build-4",
           "title": "Material Movement",
-          "description": "These material movement fixtures were designed to facilitate the safe and efficient movement of parts within the workshop. The fixtures were fabricated from sheet metal and use push-pull clamps to secure the parts during transport.",
+          "description": "These fixtures came from the less glamorous but very real problem of moving parts around the workshop without damaging them or making someone fight the load. I designed the sheet-metal supports and clamping points to keep the parts secure while they were being lifted or transported.",
           "media": [
             { "type": "image", "src": "/Tooling and Fixtures/material-movement/mast.png", "alt": "Material Movement 1" },
             { "type": "image", "src": "/Tooling and Fixtures/material-movement/hoist.png", "alt": "Material Movement 2" },
