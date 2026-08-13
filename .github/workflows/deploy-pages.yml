@@ -31,6 +31,8 @@ jobs:
         run: npm run build
       - name: Add SPA fallback for GitHub Pages
         run: cp dist/index.html dist/404.html
+      - name: Publish custom domain
+        run: cp CNAME dist/CNAME
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
