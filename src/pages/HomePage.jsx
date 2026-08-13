@@ -15,6 +15,10 @@ const DETAIL_CLOSE_PULL_THRESHOLD_PX = 450;
 const DETAIL_CLOSE_PULL_GAIN = 0.42;
 // Pause (ms) between wheel events that counts as the end of one scroll gesture.
 const WHEEL_GESTURE_IDLE_MS = 220;
+// A short, quick swipe should still advance one step instead of snapping back.
+const FLICK_MAX_MS = 320;
+const FLICK_MIN_PX = 18;
+const FLICK_MIN_VELOCITY = 0.25;
 const UNSUPPORTED_IMAGE_EXT = new Set(["heic", "heif"]);
 const SUPPORTED_VIDEO_EXT = new Set(["mp4", "webm", "ogv", "ogg"]);
 
@@ -449,9 +453,15 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
 
     let touchY = null;
     let touchStartPos = 0;
+    let flickStartY = 0;
+    let flickStartT = 0;
+    let edgePulled = false;
     const onTouchStart = (e) => {
       touchY = e.touches[0].clientY;
       touchStartPos = freeMediaPos.current;
+      flickStartY = touchY;
+      flickStartT = e.timeStamp || performance.now();
+      edgePulled = false;
       lastTouchYRef.current = touchY;
       touchInCopyRef.current = !!(copySideRef.current && copySideRef.current.contains(e.target));
       clearTimeout(snapTimerRef.current);
@@ -480,6 +490,8 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
         touchInCopyRef.current = false;
         touchStartPos = freeMediaPos.current;
         touchY = currentY;
+        flickStartY = currentY;
+        flickStartT = e.timeStamp || performance.now();
       }
       lastTouchYRef.current = currentY;
 
@@ -487,14 +499,25 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
       const atTop = touchStartPos <= 0.001;
       const atBottom = touchStartPos >= lastIndex - 0.001;
       if ((atTop && delta < 0) || (atBottom && delta > 0)) {
+        edgePulled = true;
         handleEdgeClosePull(delta * 0.6);
         return;
       }
       stepTo(touchStartPos + delta / (window.innerHeight * 0.7));
     };
-    const onTouchEnd = () => {
+    const onTouchEnd = (e) => {
+      const wasTracking = touchY !== null;
       touchY = null;
       clearTimeout(snapTimerRef.current);
+
+      if (wasTracking && !edgePulled && !mobileCopyOpenRef.current && !touchInCopyRef.current && introDone && !closingRef.current) {
+        const dy = flickStartY - lastTouchYRef.current;
+        const dt = Math.max(1, (e.timeStamp || performance.now()) - flickStartT);
+        if (dt <= FLICK_MAX_MS && Math.abs(dy) >= FLICK_MIN_PX && Math.abs(dy) / dt >= FLICK_MIN_VELOCITY) {
+          stepTo(Math.round(touchStartPos) + Math.sign(dy));
+        }
+      }
+
       snapTimerRef.current = setTimeout(snap, 80);
     };
 
@@ -912,10 +935,14 @@ export default function HomePage() {
   useEffect(() => {
     if (openSectionIndex !== null || aboutOpen) return undefined;
     let touchStartY = null;
+    let touchStartT = 0;
+    let lastTouchY = 0;
     let freePosAtStart = 0;
 
     const onStart = (e) => {
       touchStartY = e.touches[0].clientY;
+      touchStartT = e.timeStamp || performance.now();
+      lastTouchY = touchStartY;
       freePosAtStart = freePos.current;
       setIsScrolling(true);
       clearTimeout(snapTimer.current);
@@ -923,13 +950,23 @@ export default function HomePage() {
 
     const onMove = (e) => {
       if (touchStartY === null) return;
-      const delta = touchStartY - e.touches[0].clientY;
+      lastTouchY = e.touches[0].clientY;
+      const delta = touchStartY - lastTouchY;
       freePos.current = Math.max(0, Math.min(sections.length - 1, freePosAtStart + delta / (window.innerHeight * 0.65)));
       rawTarget.set(freePos.current);
     };
 
-    const onEnd = () => {
+    const onEnd = (e) => {
+      if (touchStartY === null) return;
+      const dy = touchStartY - lastTouchY;
+      const dt = Math.max(1, (e.timeStamp || performance.now()) - touchStartT);
       touchStartY = null;
+
+      if (dt <= FLICK_MAX_MS && Math.abs(dy) >= FLICK_MIN_PX && Math.abs(dy) / dt >= FLICK_MIN_VELOCITY) {
+        freePos.current = Math.max(0, Math.min(sections.length - 1, Math.round(freePosAtStart) + Math.sign(dy)));
+        rawTarget.set(freePos.current);
+      }
+
       snapTimer.current = setTimeout(snapToNearest, 80);
     };
 
