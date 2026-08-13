@@ -608,12 +608,14 @@ function InlineSectionExperience({ section, sectionIndex, heroOnLeft, site, onCl
 
   // On mobile, hide the redundant summary once past the first picture.
   const collapseSummary = viewport.w <= 900 && activeMediaIndex > 0;
+  // Tap-to-close is desktop-only; touch has no hover affordance revealing it.
+  const isMobile = viewport.w <= 900;
 
   return (
     <div
       ref={scrollRef}
       className={`detail-page inline-detail ${heroOnLeft ? "inline-detail--media-left" : "inline-detail--media-right"} ${introDone ? "" : "detail-page--intro"}${mobileCopyOpen ? " is-copy-open" : ""}`}
-      onClick={() => runClose()}
+      onClick={isMobile ? undefined : () => runClose()}
     >
       <motion.div
         className={`detail-close-hint${closeDirection ? " is-active" : ""}${closeDirection === "down" ? " detail-close-hint--down" : ""}`}
