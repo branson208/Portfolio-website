@@ -497,8 +497,8 @@
           "id": "tooling-build-3",
           "title": "Drill Jig",
           "description": [
-            "",
-            ""
+            "Before I implemented this drill fixture there were many safety concerns as well as quality concerns for the way we were performing these drilling operations.",
+            "This design addresses all those problems while cutting the time it took to perform those same operations by more than half."
           ],
           "media": [
             { "type": "image", "src": "/Tooling and Fixtures/drill-jig/drill-design.png", "alt": "Drill Jig 1" },
