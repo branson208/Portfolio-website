@@ -20,7 +20,7 @@
       "Design for Manufacturing (DFM)",
       "Mechanical Design (CAD)",
       "Tooling / Fixture Design",
-      "Digital Transformation / IIOT / Industry 4.0",
+      "Digital Transformation / IIoT / Industry 4.0",
       "Automation",
       "Continuous Improvement",
       "Data Engineering / Analysis",
@@ -261,7 +261,7 @@
           "title": "Powder Coat Infrastructure",
           "description": [
             "I help with a couple of different projects to improve our powder coat area. This included designing and building new ceiling ventilation fans to improve the airflow in the area as well as a wash trough drip catch pan to catch any excess water that would drip off the parts after they were washed and before they were powder coated.",
-            "The ventilation fans were designed to be installed in place of existing sky lights using the same roof hole opening. They were also designed to be easily accessible for maintenance and cleaning."
+            "The ventilation fans were designed to be installed in place of existing skylights using the same roof-hole opening. They were also designed to be easily accessible for maintenance and cleaning."
           ],  
           "media": [
             { "type": "image", "src": "/Building Infrastructure/powder-coat/vent-fan.png", "alt": "Building Ventilation" },
@@ -278,7 +278,7 @@
       "detailGroups": [
         {
           "id": "personal-overview-1",
-          "title": "Wood Work Bench",
+          "title": "Wood Workbench",
           "description": [
             "While designing this workbench, I was inspired by old Roman and English woodworking benches and techniques. I wanted something simple and built around hand tools—handsaws, planes, chisels, and similar work.",
             "It was important to me that the bench be assembled using traditional woodworking joinery rather than screws or nails. That made the build more challenging, but I’m happy with the result.",
@@ -303,10 +303,10 @@
         },
         {
           "id": "personal-overview-3",
-          "title": "Van Swivel Seat",
+          "title": "Favorite Van Swivel Seat Position",
           "description": [
-            "This is my favorite position to put the seat in. Which is more or less a happy accident as I didn't even think about this when I was looking into these swivel seats.",
-            "I just get to put my feet up and relax as I look at the stars above. The next best thing without having to cut a hole in the roof of the van to install a sun roof."
+            "This is my favorite position to put the seat in, which is more or less a happy accident, since I didn't even think about this when I was looking into these swivel seats.",
+            "I just get to put my feet up and relax as I look at the stars above. It's the next best thing to having a sunroof without cutting a hole in the roof of the van."
           ],
           "media": [
             { "type": "image", "src": "/Personal Projects/swivel-seat/favorite-position.jpg", "alt": "Favorite Position" }
@@ -318,7 +318,7 @@
           "description": [
             "This was part of a plastics and composites class where I was able to practice wet layup.",
             "The ski was built using fiberglass, epoxy resin, and carbon fiber (for the top decal), and a wooden core, allowing me to experiment with different layering techniques and achieve a strong, lightweight structure.",
-            "Having never seen skis built before or never seeing what the inside of a ski looks like, I had to do a lot of research and reverse engineering to figure out how to build this ski. I was able to find some information on the internet about how skis are built and what materials are used, but I had to experiment with different techniques and materials to achieve the desired result."
+            "Having never seen skis built before, or seen what the inside of a ski looks like, I had to do a lot of research and reverse engineering to figure out how to build this ski. I was able to find some information online about how skis are built and what materials are used, but I still had to experiment with different techniques and materials to achieve the desired result."
           ],
           "media": [
             { "type": "image", "src": "/Personal Projects/ski/1.JPG", "alt": "Finished Ski" },
@@ -414,8 +414,8 @@
           "id": "product-prototypes-final",
           "title": "Van Bed Prototype",
           "description": [
-            "I powder coated the frame white for a clean esthetic and durable finish. And also added wood in the drawer system to save on weight and I likes the look of the wood as well as an accent to the white powder coated frame.",
-            "The bed was made by cutting up a foam mattress into sections and covering them with upholstery fabric. To also increase the utilitarian value the van can still be used to haul cargo inside just by laying the frame in the flat bed position and removing the mattress sections (they are secured by velcro)."
+            "I powder coated the frame white for a clean, aesthetic, and durable finish. I also added wood to the drawer system to save weight, and I like the look of the wood as an accent against the white powder-coated frame.",
+            "The bed was made by cutting up a foam mattress into sections and covering them with upholstery fabric. To increase the van's utility, it can still be used to haul cargo inside simply by laying the frame in the flat-bed position and removing the mattress sections, which are secured with Velcro."
           ],
           "media": [
             { "type": "image", "src": "/Product Design/van-bed/1.jpg", "alt": "Van Bed back" },
@@ -427,8 +427,8 @@
         {
           "id": "product-prototypes-2",
           "title": "Moto Tail Bag",
-          "description": ["I love the look and feel of leather and wanted to make a bag that would double as a good medium sized duffle bag as well as tail bag for my motorcycle. I wanted a roll top back to accomodate different sizes of loads.",
-          "To keep the design modular and simple I added loop hooks strapping on the sides of the bag to allow for different mounting options and hardware to be attached.",
+          "description": ["I love the look and feel of leather and wanted to make a bag that would double as a good medium-sized duffle bag as well as a tail bag for my motorcycle. I wanted a roll-top bag to accommodate different load sizes.",
+          "To keep the design modular and simple, I added loop-hook straps on the sides of the bag to allow for different mounting options and hardware to be attached.",
           "I chose a softer chap leather for the main construction and a harder tooling leather for the straps and accents."
           ],
           "media": [
@@ -453,7 +453,7 @@
     {
       "id": "tooling-and-fixtures",
       "slug": "tooling-and-fixtures",
-      "title": "Tooling And Fixtures",
+      "title": "Tooling and Fixtures",
       "summary": "Designing and building repeatable workholding solutions and modular fixtures that improve process consistency, manufacturability, and operator efficiency.",
       "detailGroups": [
         {
@@ -468,7 +468,7 @@
         },
         {
           "id": "tooling-build-1-adjustable",
-          "title": "Weld Fixture Adjustable",
+          "title": "Adjustable Weld Fixture",
           "description": [
             "We found that a fixture does not always need to be permanently fixed. Making the parts adjustable and modular means a worn component can be swapped out, and a revised part does not require rebuilding the whole fixture.",
             "This version uses 8020 aluminum extrusion so I could move and reconfigure the locating points as needed. It also has a practical advantage on the weld floor: spatter is less likely to stick to the extrusion rail and turn the fixture into a cleanup project."
