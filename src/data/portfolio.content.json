@@ -109,8 +109,8 @@
           "id": "automation-overview-1",
           "title": "Beckhoff Control Enclosure Design",
           "description": [
-              "I designed this control enclosure for a smaller project that did not need much IO yet. So for the moment it is just a bare bones way of providing power to the Beckhoff IPC for testing purposes",
-              "The purpose for this controls enclosure was to provide a server testing environment for testing a custom Scada system that I built in house while still keeping the system open to more PLC expansion at a later time."
+              "I designed this control enclosure for a smaller project that did not require much I/O yet. For the moment, it serves as a simple power and testing enclosure for the Beckhoff IPC.",
+              "The purpose of this enclosure was to provide a small test environment for a custom SCADA system I built in-house while keeping the system open to future PLC expansion."
           ],
           "media": [
             { "type": "image", "src": "/Automation/cabinet.png", "alt": "Control Cabinet Design" }
@@ -120,9 +120,9 @@
           "id": "automation-overview-2",
           "title": "Live Automated Line Signals",
           "description": [
-            "This was a the physical shop floor visibility extension for our Scada system. I programmed this as part of an Andon signal-for-help system so an issue on the line could be seen and acted on before it quietly became a larger delay.",
-            "The Scada system would write values to a database, a Beckhoff connected to these lights would read from that database and tell which lights to turn on based on different statuses.",
-            "This was programmed using TwinCat. The program was  in such as way that as more light sequences or status indicators are added the logic can be easily adjusted."
+            "This was the physical shop-floor visibility layer for our SCADA system. I programmed it as part of an Andon signal-for-help system so issues on the line could be seen and addressed before they became larger delays.",
+            "The SCADA system wrote status values to a database, and a Beckhoff controller read from that database to determine which lights should activate based on current line conditions.",
+            "The logic was written in TwinCAT in a way that made it easy to add more light sequences or status indicators as the process evolved."
           ],
           "media": [
             { "type": "video", "src": "/Automation/Line-move.mp4", "alt": "Line Move Sequence" },
@@ -131,10 +131,10 @@
         },
         {
           "id": "automation-overview-4",
-          "title": "Scada System Design",
+          "title": "SCADA System Design",
           "description": [
-            "I designed this custom SCADA system from the ground up. It is built on a Python (Flask) backend with a traditional HTML,CSS,Javascript frontend. The advantage of building a scada system this way is that there unlike some popular Scada systems there are no steep licensing fees and using a modern web frame work enabled a lot more for the business use cases.",
-            "Because this framework was so flexible and easily expandable, I was able to digitalize and make multiple process faster and easier to access for end users."
+            "I designed this custom SCADA system from the ground up. It uses a Python (Flask) backend with a traditional HTML, CSS, and JavaScript frontend. Building it this way avoided expensive licensing fees and gave us a platform that could be tailored to the specific needs of the business.",
+            "Because the framework was flexible and easily expandable, I was able to digitalize several processes and make them faster and easier for end users to access."
           ],
           "media": [
             { "type": "image", "src": "/Automation/home-screen.png", "alt": "SCADA System Home Screen" }
@@ -142,11 +142,11 @@
         },
         {
           "id": "automation-overview-5",
-          "title": "Scada System Design",
+          "title": "SCADA Production Scheduling",
           "description": [
-            "Building a production scheduler into the Scada system was a natural fit. From here managers with the proper rights are able to go in and schedule what units they are building and during what times.",
-            "That data would then be fed into our database which the Scada system, using ADS communication, would tell the Beckhoff IPC driving the production lights to go and read the new production schedule.",
-            "From there the physical production lights would be in sync with the scada system for things like indicating line move times, break times, etc."
+            "Adding a production scheduler to the SCADA system was a natural fit. Managers with the proper permissions can schedule what units are being built and when.",
+            "That schedule is fed into the database, and the SCADA system uses ADS communication to instruct the Beckhoff IPC that drives the production lights to read the updated plan.",
+            "From there, the physical line signals stay synchronized with the SCADA system for tasks such as line moves, break times, and other production cues."
           ],
           "media": [
             { "type": "video", "src": "/Automation/prod-schedule.mp4", "alt": "SCADA System Production Schedule" }
@@ -154,10 +154,10 @@
         },
         {
           "id": "automation-overview-6",
-          "title": "Scada System Dashboard Integration",
+          "title": "SCADA Dashboard Integration",
           "description": [
-            "This dashboard was designed so that anyone on the production line could glance up at the TV and see how much time they had left to complete their current unit. It acted as the drum beat for the production line. As well as operators seeing this team leads and other managers could also see if a station was behind schedule and address any problems.",
-            "Before I implemented this system there was no visibility to how many units had been completed at any given point in time and there was no way to know if the production line was on track to finish for the day."
+            "This dashboard was designed so anyone on the production line could glance up at the TV and see how much time remained to complete the current unit. It acted as the pace-setting signal for the line, while operators, team leads, and managers could quickly see whether a station was behind schedule and address issues early.",
+            "Before this system was implemented, there was no clear real-time visibility into completed units or whether the line was on track to finish for the day."
           ],
           "media": [
             { "type": "image", "src": "/Automation/dashboard.png", "alt": "SCADA System Production Schedule" }
@@ -165,11 +165,11 @@
         },
         {
           "id": "automation-overview-7",
-          "title": "Scada System Design",
+          "title": "Andon and Quality Tracking",
           "description": [
-            "Andon Requests are made in the Scada system which was made available to all operators and managers on the production line.",
-            "These requests tie directly into the production lights and the production dashboard so that anyone on the line can see that a request has been made and what type of request it is.",
-            "When a product has been found in production that is non forming to specifications it can immediately be tagged in this system as well which automatically prints a red tag label and adds it to a queue system for the quality team to address."
+            "Andon requests are created in the SCADA system and made available to all operators and managers on the production line.",
+            "These requests tie directly into the production lights and dashboard so anyone on the line can immediately see when a request has been made and what type it is.",
+            "When a product is found to be out of specification during production, it can be flagged in the system, which automatically prints a red tag label and adds it to the quality team’s queue for follow-up."
           ],
           "media": [
             { "type": "image", "src": "/Automation/andon-request.png", "alt": "SCADA System Andon Request" },
@@ -182,15 +182,15 @@
       "id": "building-infrastructure",
       "slug": "building-infrastructure",
       "title": "Building Infrastructure",
-      "summary": "The physical side of the work: rearranging stations, building material-handling equipment, and fitting new infrastructure into a working production space.",
+      "summary": "Reordering process flow, installing work cells and lifting equipment, and building the shop infrastructure that keeps production moving in a real facility.",
       "detailGroups": [
         {
           "id": "infra-site-1",
           "title": "Pallet Conveyor Build",
           "description": [
-            "I designed and built this pallet conveyor in-house to move product through the line without buying a system that was more complicated or expensive than we needed. Keeping it modular also made it easier to adapt the layout as the process changed.",
-            "Building it in house provided cost savings of $20,000+ especially since as they want to build more they now have the design files and can easily expand at a low cost.",
-            "This also allowed us to implement a kanban system for critical components that are harder to restock. The conveyor is designed to be easy to load and unload, and the modular design allows us to add or remove sections as needed."
+            "I designed and built this pallet conveyor in-house to move product through the line without buying a more complicated or expensive system. Keeping it modular also made it easier to adapt the layout as the process changed.",
+            "Building it in-house saved us $20,000+, and it gave us reusable design files if we wanted to expand the system later. It also let us add a kanban system for critical components that are harder to restock.",
+            "The conveyor is easy to load and unload, and the modular design allows sections to be added or removed as needed."
           ],
           "media": [
             { "type": "image", "src": "/Building Infrastructure/pallet.png", "alt": "Pallet Conveyor Build" }
@@ -210,9 +210,9 @@
           "id": "infra-site-3",
           "title": "Process Flow Reorder",
           "description": [
-            "I wanted a quick way to try new station layouts without spending the time to rebuild the entire area in CAD first.",
-            "I 3D-scanned the station as it existed, brought that scan into Blender, and rearranged the components there. That gave me a believable starting point and let me test the process flow before moving anything in the real space.",
-            "This ended up being much faster than recreating the station from scratch in CAD, and the scan kept the layout honest because it included all the awkward real-world details that are easy to leave out of a clean model."
+            "I wanted a quick way to test new station layouts without rebuilding the entire area in CAD first.",
+            "I 3D-scanned the station as it existed, brought that scan into Blender, and rearranged the components there to see how the flow would work before moving anything in the real space.",
+            "It was much faster than recreating the station from scratch, and the scan kept the layout honest because it included all the real-world details that are easy to leave out of a clean model."
           ],  
           "media": [
             { "type": "video", "src": "/Building Infrastructure/floor-plan.mp4", "alt": "Process Flow Reorder" }
@@ -234,9 +234,9 @@
           "id": "infra-site-5a",
           "title": "Bridge Crane Integration",
           "description": [
-            "While helping to expand our facilities I was tasked with designing a free standing bridge crane design that would be able to lift and move large products on the production line. It also needed to be able to be configured on site without requiring any more equipment than a forklift and a few people to assemble it.",
-            "I designed the system so that we could reuse the design to span variable distances just by varying the length of cut square tubing. By doing this we were able to reuse this design for two different areas in the facility.",
-            "To ensure safety I did stress analysis on the design to ensure that the crane would be able to lift the required loads without any risk of failure."
+            "While helping expand the facility, I was tasked with designing a freestanding bridge crane that could lift and move large production parts. It also needed to be configurable on-site without requiring more than a forklift and a few people to assemble it.",
+            "I designed the system so the same concept could be reused for different spans by varying the length of the square tubing. That let us use the same design in two separate areas of the facility.",
+            "To make sure it was safe, I ran stress analysis to confirm the crane could handle the required loads without risk of failure."
           ],  
           "media": [
             { "type": "image", "src": "/Building Infrastructure/crane/crane-weld.png", "alt": "Bridge Crane Weld" },
@@ -248,10 +248,8 @@
           "id": "infra-site-5b",
           "title": "Jib Crane Integration",
           "description": [
-            "As part of the facilities expansion, We had a couple of existing Jib cranes that we wanted to move to the new location as well as fabricate a couple more.",
-            "Since we didn't have the original designs I reverse engineered the existing cranes and designed a new one to match the existing ones.",
-            "To make the existing crane fit our new operations I also designed a riser base that would allow the crane to be mounted higher and give us more clearance for our operations.",
-            "I also did stress analysis on all the designs to ensure that it would be able to lift the required loads without any risk of failure."
+            "As part of the facilities expansion, we moved a couple of existing jib cranes to the new location and fabricated additional units. Since we didn’t have the original drawings, I reverse engineered the existing cranes and designed new ones to match.",
+            "To fit the updated operation, I also designed a riser base so the crane could be mounted higher and provide additional clearance. I completed stress analysis on the designs to confirm they could safely handle the required loads."
           ],  
           "media": [
             { "type": "image", "src": "/Building Infrastructure/crane/jib.png", "alt": "Jib Crane" },
@@ -282,9 +280,9 @@
           "id": "personal-overview-1",
           "title": "Wood Work Bench",
           "description": [
-            "While coming up with the design for this work bench I was inspired by old roman and english woodworking benches and techniques. I wanted something that was simple and designed around the intent to be used with hand tools (handsaws, hand planes, chisels, etc.).",
-            "Also something that was important to me with this design was that everything be assembled using traditional woodworking joinery techniques and not using any screws or nails. This was a challenge to build but I am happy with the end result.",
-            "I also built this all while in our two room apartment with no garage or shop space and in the middle of the winter (so not much to be done outside). So I had to be creative with how I built this. My old landlord would get a kick out of the hand plane shavings all over the floor"
+            "While designing this workbench, I was inspired by old Roman and English woodworking benches and techniques. I wanted something simple and built around hand tools—handsaws, planes, chisels, and similar work.",
+            "It was important to me that the bench be assembled using traditional woodworking joinery rather than screws or nails. That made the build more challenging, but I’m happy with the result.",
+            "I also built it while living in a two-room apartment in winter, with no garage or shop space, so I had to be creative with how I built and used it. My old landlord would get a kick out of the plane shavings all over the floor."
           ],
           "media": [
             { "type": "image", "src": "/Personal Projects/workbench/bench.jpg", "alt": "Finished Bench" },
@@ -352,12 +350,10 @@
           "id": "personal-overview-6",
           "title": "Motorcycle Trailer",
           "description": [
-            "This was a project I took on to practice my welding skills and to hopefully in the end have a trailer that I could use to haul my motorcycle around.",
-            "I was lucky enough that my work was discontinuing a bunch of trailer frames. So I would need to make some modifications to the frame to make it work for my motorcycle.",
-            "A primary part of this design was the wheel chock that would hold the front wheel of the motorcycle in place. I designed this to be adjustable to accommodate different wheel sizes and to ensure a secure fit. I also wanted this to be a quick release design so that I could easily load and unload my motorcycle without having to finick around with trying to keep the motorcycle upright while adding straps and tie downs on the handlebars.",
-            "The end result is a trailer that is self contained with ramps and everything so I can just load my motorcycle and go. I can also use this trailer to haul other things around as well which is actually what I have been using it for lately.",
-            "And as with most of my personal projects. This was done while I was in school and trying to save money the best I could. So I would have used steel railing and expanded sheet metal for the flooring if I could. But wood was a lot cheaper at the time. So there may be future modifications to this trailer to make it more durable and long lasting. But for now it works great and I am happy with the end result.",
-            "And yes that is a Honda XL500R for all you enthusiasts out there. It was my dad's bike back in the day so some might say I have a family heirloom in my possession."
+            "This was a project I took on to practice my welding and to build a trailer I could actually use for my motorcycle. I was lucky enough that my work was discontinuing a bunch of trailer frames, so I modified one to fit my bike.",
+            "A key part of the design was the adjustable wheel chock, which held the front wheel securely and made loading and unloading much easier. I wanted a quick-release setup so I could keep the bike upright while moving straps and tie-downs around.",
+            "The result is a self-contained trailer with ramps, so I can load the bike and go. I also use it for hauling other things. Like a lot of my personal work, it was built while I was in school and trying to save money, so I used wood in place of steel railing and expanded sheet metal where I could to save on cost.",
+            "It might get more upgrades later, but for now it works well and I’m happy with it. And yes, that’s a Honda XL500R — my dad’s old bike. Some might say I have a family heirloom in my possession."
           ],
           "media": [
             { "type": "image", "src": "/Personal Projects/moto-trailer/1.JPG", "alt": "Finished Trailer" },
@@ -372,10 +368,9 @@
           "id": "personal-overview-7",
           "title": "Arbor Swing / Day Bed",
           "description": [
-            "While spending the summer in my hometown I wanted to build something for my wife. My grandparents had some old barn wood laying around. My wife loves porch sitting/swings. So the pieces just fell together after that and I built an arbor swing and day bed for her.",
-            "I love modular design as can be seen in a lot of my work. And this is no different. The back rest is adjustable to different lengths so it can be a normal swing or be put all the way back to be a day bed. The swing is also designed to be able to be taken down and stored away if needed. And I designed it in mind that the removable cushion / foldable mattress could slide underneath backrest and be used as a seat pad or mattress for the bed.",
-            "All the wood is sealed with polyurethane to protect it from the elements and the rope is a thick braided nylon rope that can withstand the weather. And as with a lot of my projects I used what hardware I had laying around to build this. The sheet metal brackets were made from scrap laying around and the bolts and nuts were from misc farm equipment that my grandpa had laying around.",
-            "And I would be amiss if I didn't mention the solar powered \"twinkly lights\" that my wife is so fond of that we hung so it would be lit up during the night."
+            "While spending the summer in my hometown, I wanted to build something for my wife. My grandparents had old barn wood lying around, my wife loves porch swings, and the pieces just came together from there.",
+            "I love modular design, and this project was no different. The backrest is adjustable so it can function as a normal swing or be laid back as a day bed, and the whole thing can be taken down and stored away if needed. I also designed it so the removable cushion and foldable mattress could slide underneath and work as a seat pad or bed.",
+            "Everything is sealed with polyurethane, and the rope is thick braided nylon so it can handle the weather. I used scrap steel brackets and farm hardware wherever I could, and I’d be remiss not to mention the solar-powered twinkly lights my wife loves so much."
           ],
           "media": [
             { "type": "image", "src": "/Personal Projects/swing/1.jpg", "alt": "Arbor Swing" },
@@ -396,19 +391,19 @@
           "id": "product-concepts",
           "title": "Van Bed Concept",
           "description": [
-            "I bought an Astrovan and from the start I knew that the capstone of the build would be a bed that could convert from a couch to a bed and back again. I wanted to make sure that the design was functional, comfortable, and easy to use. I also wanted to make sure that the design was modular and could be easily disassembled and reassembled if needed.",
-            "I also knew I wanted storage space underneath the bed for all the gear and cooking infrastructure I would be taking on trips. So I designed the bed to have a storage area underneath that could be accessed from the back and inside the van."
+            "I got an Astrovan with the intention of building the centerpiece around a bed that could transition from couch to sleeping platform and back again. The design needed to be functional, comfortable, and simple to operate, while also being modular enough to disassemble and reconfigure if needed.",
+            "I also wanted a storage system underneath for all the gear and cooking setup I would need on the road, so I designed the bed to include accessible storage from both the rear and inside the van."
           ],
           "media": [
             { "type": "video", "src": "/Product Design/van-bed/bed.mp4", "alt": "Product design sample" }
           ]
         },
         {
-          "id": "product-prototypes",
+          "id": "product-prototypes-build",
           "title": "Van Bed Build",
           "description": [
             "The whole frame structure was designed to be fabricated using solely sheet metal and sheet metal fabrication processes (laser cutting, bending, and welding).",
-            "I built my frame out of steel for cost reasons but if I had a larger budget I would have built it out of aluminum to save weight."
+            "I built my frame out of steel for cost reasons, but if I had a larger budget I would have built it out of aluminum to save weight."
           
           ],
           "media": [
@@ -416,7 +411,7 @@
           ]
         },
         {
-          "id": "product-prototypes",
+          "id": "product-prototypes-final",
           "title": "Van Bed Prototype",
           "description": [
             "I powder coated the frame white for a clean esthetic and durable finish. And also added wood in the drawer system to save on weight and I likes the look of the wood as well as an accent to the white powder coated frame.",
@@ -459,7 +454,7 @@
       "id": "tooling-and-fixtures",
       "slug": "tooling-and-fixtures",
       "title": "Tooling And Fixtures",
-      "summary": "Fixtures and shop-built tools that make parts easier to locate, clamp, weld, drill, and move without asking the operator to solve the same problem from scratch every time.",
+      "summary": "Designing and building repeatable workholding solutions and modular fixtures that improve process consistency, manufacturability, and operator efficiency.",
       "detailGroups": [
         {
           "id": "tooling-build-1",
