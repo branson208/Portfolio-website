@@ -818,9 +818,9 @@ function HeroPanel({ section, slideIndex, smoothTarget, onOpen, isActive = false
 }
 
 function InfoPanel({ section, sectionIndex, smoothTarget, onOpen }) {
-  // Counter the slider's vh-based translation in the SAME unit so the summary
+  // Counter the slider's dynamic-viewport translation in the SAME unit so the summary
   // is perfectly locked in place (no drift), then fade only near the boundary.
-  const summaryY = useTransform(smoothTarget, (t) => `${(t - sectionIndex) * 100}vh`);
+  const summaryY = useTransform(smoothTarget, (t) => `${(t - sectionIndex) * 100}dvh`);
   const summaryOpacity = useTransform(smoothTarget, (t) => {
     const a = Math.abs(sectionIndex - t);
     const x = clamp((a - 0.3) / 0.2, 0, 1); // 0 while within the section, 1 at the edge
@@ -861,7 +861,7 @@ export default function HomePage() {
 
   const rawTarget = useMotionValue(0);
   const smoothTarget = useSpring(rawTarget, SPRING);
-  const sliderY = useTransform(smoothTarget, (t) => `${-t * 100}vh`);
+  const sliderY = useTransform(smoothTarget, (t) => `${-t * 100}dvh`);
 
   const freePos = useRef(0);
   const snapTimer = useRef(null);
