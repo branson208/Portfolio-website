@@ -1507,7 +1507,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .print-front-kicker {
@@ -1519,8 +1519,8 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 .print-front-card h2 {
-  font-size: clamp(1.8rem, 4vw, 3.6rem);
-  line-height: 1.04;
+  font-size: clamp(1.6rem, 3.4vw, 2.25rem);
+  line-height: 1.5;
   letter-spacing: -0.01em;
 }
 
@@ -1537,8 +1537,8 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 .print-front-summary--compact {
-  font-size: 1rem;
-  line-height: 1.42;
+  font-size: 0.85rem;
+  line-height: 1.5;
   max-width: 100%;
 }
 
@@ -1562,19 +1562,19 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 .print-toc-list {
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .print-toc-columns {
-  margin-top: 6px;
+  margin-top: 4px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px 14px;
+  gap: 8px 14px;
   align-content: start;
 }
 
@@ -1582,7 +1582,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .print-toc-block {
@@ -1600,10 +1600,10 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 .print-toc-block-summary {
-  font-size: 0.8rem;
-  line-height: 1.35;
+  font-size: 0.7rem;
+  line-height: 1.25;
   color: #6b655c;
-  margin: 0 0 8px;
+  margin: 0 0 5px;
 }
 
 .print-toc-item {
@@ -1611,7 +1611,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 12px;
   align-items: baseline;
-  padding-bottom: 8px;
+  padding-bottom: 5px;
   border-bottom: 1px solid rgba(23, 23, 23, 0.18);
 }
 
@@ -1624,7 +1624,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 .print-toc-main {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   line-height: 1.2;
 }
 
@@ -1666,12 +1666,14 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   display: flex;
   flex-direction: column;
   gap: 3px;
+  margin-bottom: 4px;
 }
 
 .print-about-name {
-  margin-top: 4px;
-  font-size: 3rem;
+  margin-top: 5px;
+  font-size: 2.5rem;
   color: #3f3a34;
+  line-height: .8;
 }
 
 .print-about-layout {
@@ -1691,7 +1693,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 .print-front-summary--about {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   line-height: 1.56;
   max-width: none;
 }
@@ -1737,7 +1739,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .print-about-side {
   min-height: 0;
   display: grid;
-  grid-template-rows: 0.95fr minmax(0, 1fr);
+  grid-template-rows: 0.8fr minmax(0, 1fr);
   gap: 8px;
 }
 
@@ -1849,7 +1851,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .print-project-card {
   width: 100%;
-  max-width: 1920px;
+  max-width: 1536px;
   aspect-ratio: 16 / 9;
   position: relative;
   background: #f2f2f2;
@@ -2217,7 +2219,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 
 .print-desc {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   line-height: 1.56;
   color: #3f3a34;
 }
@@ -2316,7 +2318,6 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
     background: #f2f2f2;
     color: #000;
     padding: 0;
-    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   }
 
   .print-header,
@@ -2358,14 +2359,14 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   }
 
   .print-project-card {
-    width: 100%;
-    height: 100vh;
+    width: 16in;
+    height: 9in;
     max-width: none;
     margin: 0;
     border: none;
     box-shadow: none;
     background: #f2f2f2;
-    padding: 25px;
+    padding: 30px;
     aspect-ratio: auto;
     break-after: page;
     page-break-after: always;
@@ -2382,11 +2383,7 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
   }
 
   .print-front-card {
-    padding-top: 25px;
-  }
-
-  .print-toc-columns {
-    gap: 6mm;
+    padding-top: 20px;
   }
 
   .print-about-software-grid {
@@ -2401,9 +2398,4 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
     padding-top: 3mm;
   }
 
-  .print-desc {
-    font-size: 11.5pt;
-    line-height: 1.58;
-    -webkit-line-clamp: 9;
-  }
 }

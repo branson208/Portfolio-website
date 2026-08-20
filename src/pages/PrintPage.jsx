@@ -611,6 +611,9 @@ export default function PrintPage() {
           <p className="print-note">
             Use each media slider to adjust horizontal crop and video frame. Settings are saved in your browser.
           </p>
+          <p className="print-note">
+            In the print dialog, set Destination to "Save as PDF" (not a physical printer or "Microsoft Print to PDF"), Paper size to the custom 16in x 9in option, and Scale to 100% / Default — otherwise the browser will substitute a standard paper size and shrink the page to fit, making everything look smaller than this preview.
+          </p>
         </div>
       </header>
 
@@ -618,6 +621,7 @@ export default function PrintPage() {
         <article className="print-project-card print-front-card print-toc-card" id="print-contents-page">
           <div className="print-front-inner">
             <p className="print-front-kicker">Contents</p>
+            <div className="print-front-header">
             {about.name && <p className="print-about-name">{about.name}</p>}
             <h2>{site.title || "Portfolio"}</h2>
             {normalizeParagraphs(site.aboutText).map((paragraph, idx) => (
@@ -625,6 +629,7 @@ export default function PrintPage() {
                 {renderTextWithLinks(paragraph, `front-summary-${idx}`)}
               </p>
             ))}
+            </div>
 
             <div className="print-toc-columns">
               {tocColumns.map((column, columnIndex) => (
@@ -832,9 +837,9 @@ export default function PrintPage() {
                   </div>
 
                   <div className="print-project-bottom">
-                    <p className="print-meta">
+                    {/* <p className="print-meta">
                       {`Section ${String(sectionIndex + 1).padStart(2, "0")}`}
-                    </p>
+                    </p> */}
 
                     {description.length > 0
                       ? description.slice(0, 5).map((paragraph, i) => (
@@ -853,13 +858,13 @@ export default function PrintPage() {
 
         <article className="print-project-card print-front-card print-about-card" id="print-about-page">
           <div className="print-front-inner print-about-inner">
-            <div className="print-about-header">
-              <p className="print-front-kicker">About</p>
-              {about.name && <p className="print-about-name">{about.name}</p>}
-            </div>
-
             <div className="print-about-layout">
               <section className="print-about-copy">
+                <div className="print-about-header">
+                  <p className="print-front-kicker">About</p>
+                  {about.name && <p className="print-about-name">{about.name}</p>}
+                </div>
+
                 {(aboutParagraphs.length ? aboutParagraphs : [site.aboutText || ""]).slice(0, 3).map((paragraph, idx) => (
                   <p key={`about-${idx}`} className="print-front-summary print-front-summary--about">{paragraph}</p>
                 ))}
