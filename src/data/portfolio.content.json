@@ -435,7 +435,7 @@
           "title": "Capstone Lifting Mechanism",
           "description": [
             "As part of a team, I helped redesign the lifting mechanism for an off-grid construction-site energy system. We changed the solar panel tilting design so the array could make better use of the available sun instead of accepting the limitations of the original setup.",
-            "The redesign was not only about getting more angle. We also needed the lift to be more reliable and put less stress into the structure while it moved, so I had to balance the performance improvement with the realities of building and operating it in the field."
+            "The redesign was not only about getting more angle. We also needed the lift to be more reliable and put less stress into the structure while it moved, so we had to balance the performance improvement with the realities of building and operating it in the field."
           ],
           "media": [
             { "type": "image", "src": "/Product Design/capstone/1.jpg", "alt": "Capstone Lifting Mechanism" },
