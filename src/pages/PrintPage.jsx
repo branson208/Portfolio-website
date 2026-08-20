@@ -119,6 +119,20 @@ function getProjectAnchor(projectIndex) {
   return `print-project-${String(projectIndex + 1).padStart(3, "0")}`;
 }
 
+function renderTextWithLinks(text, keyPrefix) {
+  const parts = text.split(/(bransonmurdock\.com)/gi);
+  return parts.map((part, idx) => {
+    if (/^bransonmurdock\.com$/i.test(part)) {
+      return (
+        <a key={`${keyPrefix}-link-${idx}`} href="https://bransonmurdock.com" className="print-inline-link">
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+}
+
 function getRenderableMedia(group) {
   const media = Array.isArray(group?.media) ? group.media : [];
   return media.filter((item) => item?.src && (item?.type === "image" || item?.type === "video"));
@@ -594,7 +608,11 @@ export default function PrintPage() {
             <p className="print-front-kicker">Contents</p>
             {about.name && <p className="print-about-name">{about.name}</p>}
             <h2>{site.title || "Portfolio"}</h2>
-            {site.aboutText && <p className="print-front-summary print-front-summary--compact">{site.aboutText}</p>}
+            {normalizeParagraphs(site.aboutText).map((paragraph, idx) => (
+              <p key={`front-summary-${idx}`} className="print-front-summary print-front-summary--compact">
+                {renderTextWithLinks(paragraph, `front-summary-${idx}`)}
+              </p>
+            ))}
 
             <div className="print-toc-columns">
               {tocColumns.map((column, columnIndex) => (
@@ -602,6 +620,9 @@ export default function PrintPage() {
                   {column.map(({ section, entries }) => (
                     <section key={`${section.id}-toc`} className="print-toc-block">
                       <h3 className="print-toc-block-title">{section.title}</h3>
+                      {section.summary && (
+                        <p className="print-toc-block-summary">{section.summary}</p>
+                      )}
                       <ol className="print-toc-list">
                         {entries.map((entry) => (
                           <li key={`${entry.anchor}-toc`} className="print-toc-item">

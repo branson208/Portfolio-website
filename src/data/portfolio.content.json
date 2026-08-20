@@ -4,7 +4,7 @@
     "title": "Industrial Engineering + Design Portfolio",
     "subtitle": "Selected work",
     "contactEmail": "branson.murdock@gmail.com",
-    "aboutText": "I design and engineer practical systems, tooling, and products. This portfolio is organized by discipline and each section contains documented examples of my work."
+    "aboutText": "I design and engineer practical systems, tooling, and products. This portfolio is organized by discipline and each section contains documented examples of my work.\n\nFor the interactive version (with videos) of my work visit bransonmurdock.com."
   },
   "about": {
     "heading": "About",
@@ -294,21 +294,13 @@
           "title": "Van Swivel Seat",
           "description": [
             "This is a personal project where I built a swivel seat mechanism for my van. This was more of a reverse engineering challenge to see how cheap I could make something that would have otherwise cost me about $300 (not so practical on my student budget).",
-            "This design uses a trailer wheel bearing assembly and spring locking mechanism. I only had two product images to work from (of the original product). Also the locking mechanism wasn't visible in the product images so I had to figure out how it worked and how to make it work with my design."
-          ],
-          "media": [
-            { "type": "image", "src": "/Personal Projects/swivel-seat/swivel.jpg", "alt": "Finished Swivel Seat" },
-            { "type": "image", "src": "/Personal Projects/swivel-seat/rear-facing.jpg", "alt": "Rear Facing View" }
-          ]
-        },
-        {
-          "id": "personal-overview-3",
-          "title": "Favorite Van Swivel Seat Position",
-          "description": [
-            "This is my favorite position to put the seat in, which is more or less a happy accident, since I didn't even think about this when I was looking into these swivel seats.",
+            "This design uses a trailer wheel bearing assembly and spring locking mechanism. I only had two product images to work from (of the original product). Also the locking mechanism wasn't visible in the product images so I had to figure out how it worked and how to make it work with my design.",
+            "My favorite way to use this swivel seat is to recline it out the door when I am at a site. Which is more or less a happy accident since I didn't even think about this when I was looking into these swivel seats.",
             "I just get to put my feet up and relax as I look at the stars above. It's the next best thing to having a sunroof without cutting a hole in the roof of the van."
           ],
           "media": [
+            { "type": "image", "src": "/Personal Projects/swivel-seat/swivel.jpg", "alt": "Finished Swivel Seat" },
+            { "type": "image", "src": "/Personal Projects/swivel-seat/rear-facing.jpg", "alt": "Rear Facing View" },
             { "type": "image", "src": "/Personal Projects/swivel-seat/favorite-position.jpg", "alt": "Favorite Position" }
           ]
         },
@@ -429,11 +421,13 @@
           "title": "Moto Tail Bag",
           "description": ["I love the look and feel of leather and wanted to make a bag that would double as a good medium-sized duffle bag as well as a tail bag for my motorcycle. I wanted a roll-top bag to accommodate different load sizes.",
           "To keep the design modular and simple, I added loop-hook straps on the sides of the bag to allow for different mounting options and hardware to be attached.",
-          "I chose a softer chap leather for the main construction and a harder tooling leather for the straps and accents."
+          "I chose a softer chap leather for the main construction and a harder tooling leather for the straps and accents.",
+          "An interesting design approach I took to designing this bag and making patterns in CAD was to model the bag as a sheet metal feature. I was able to use the sheet metal tools in SolidWorks to create the flat patterns for each piece of leather and then print off the patterns to use as templates for cutting the leather."
           ],
           "media": [
             { "type": "image", "src": "/Product Design/moto-tail-bag/1.jpg", "alt": "Moto Tail Bag on bike" },
-            { "type": "image", "src": "/Product Design/moto-tail-bag/2.jpg", "alt": "Moto Tail Bag strap" }
+            { "type": "image", "src": "/Product Design/moto-tail-bag/2.jpg", "alt": "Moto Tail Bag strap" },
+            { "type": "image", "src": "/Product Design/moto-tail-bag/3.jpg", "alt": "Moto Tail Bag design" }
           ]
         }
       ]
