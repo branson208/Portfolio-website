@@ -409,6 +409,18 @@ export default function PrintPage() {
       entries,
     };
   }).filter((block) => block.entries.length > 0);
+
+  const aboutBlock = {
+    section: { id: "about", title: "About" },
+    entries: [{ anchor: "print-about-page", projectIndex: null, pageNumber: aboutPageNumber, title: "About" }],
+  };
+  const personalProjectsIndex = sectionBlocks.findIndex((block) => block.section.id === "personal-projects");
+  if (personalProjectsIndex === -1) {
+    sectionBlocks.push(aboutBlock);
+  } else {
+    sectionBlocks.splice(personalProjectsIndex + 1, 0, aboutBlock);
+  }
+
   const tocColumns = [
     sectionBlocks.slice(0, Math.ceil(sectionBlocks.length / 2)),
     sectionBlocks.slice(Math.ceil(sectionBlocks.length / 2)),
@@ -627,7 +639,11 @@ export default function PrintPage() {
                         {entries.map((entry) => (
                           <li key={`${entry.anchor}-toc`} className="print-toc-item">
                             <a href={`#${entry.anchor}`} className="print-toc-link">
-                              <span className="print-toc-main">{String(entry.projectIndex + 1).padStart(2, "0")} {entry.title}</span>
+                              <span className="print-toc-main">
+                                {entry.projectIndex !== null
+                                  ? `${String(entry.projectIndex + 1).padStart(2, "0")} ${entry.title}`
+                                  : entry.title}
+                              </span>
                             </a>
                             <span className="print-toc-page">{entry.pageNumber}</span>
                           </li>
@@ -643,6 +659,7 @@ export default function PrintPage() {
               <span>{site.brand || ""}</span>
               {site.contactEmail && <span>{site.contactEmail}</span>}
             </div>
+            <span className="print-page-number">1</span>
           </div>
         </article>
 
@@ -829,6 +846,7 @@ export default function PrintPage() {
                   </div>
                 </section>
               </div>
+              <span className="print-page-number">{projectStartPage + projectIndex}</span>
             </article>
           );
         })}
@@ -915,6 +933,7 @@ export default function PrintPage() {
             </div>
 
           </div>
+          <span className="print-page-number">{aboutPageNumber}</span>
         </article>
       </section>
     </main>
